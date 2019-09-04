@@ -17,11 +17,7 @@ eureka:
 #    enable-self-preservation: false       #关闭保护机制
 #    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
-    #是否注册到注册中心
-    register-with-eureka: true        
-    #是否从注册中心拉取注册服务列表
-    fetch-registry: true              
-    #设置服务注册中心的URL
+           #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7901:7901/eureka/
   instance: 
