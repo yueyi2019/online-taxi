@@ -1,15 +1,11 @@
 #服务端口
 server: 
-  port: 7901
+  port: 8001
 
 #应用名称及验证账号
 spring: 
   application: 
-    name: eureka
-  security: 
-    user: 
-      name: root
-      password: root
+    name: service-verification-code
 
 #注册中心
 eureka: 
@@ -17,8 +13,6 @@ eureka:
 #    enable-self-preservation: false       #关闭保护机制
 #    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
-    register-with-eureka: false
-    fetch-registry: false
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7901:7901/eureka/
@@ -27,13 +21,13 @@ eureka:
     lease-renewal-interval-in-seconds: 1      
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
     lease-expiration-duration-in-seconds: 1   
-    hostname: eureka-7901
+    hostname: localhost
     prefer-ip-address: true
     #eureka注册中心的url link
     status-page-url: /actuator/info           
     #健康检查的url
     health-check-url-path: /actuator/health   
-    instance-id: eureka-7901
+    instance-id: service-verification-code
     metadata-map:
       user.name: root
       user.password: root
