@@ -21,3 +21,5 @@ app更新服务（service-app-update）：8003
 
 钱包服务（service-wallet）：8006
 
+短信服务（service-sms）：8007
+
