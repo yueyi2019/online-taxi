@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE generatorConfiguration 
+ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 数据库驱动 -->
+	<classPathEntry location="C:\Users\cpf\.m2\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar" />
+	
+	<!-- 这里的mysql驱动要求写绝对路径，有的版本可能不同 -->		
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--数据库链接URL，用户名、密码 -->
+		<!-- 记得改好对应数据库信息，建议加上数据库后面加上?serverTimezone=UTC -->
+		<!-- 不明白可以看链接(https://blog.csdn.net/m0_37482190/article/details/88880923) -->
+
+		<!--我这里的driverClass="com.mysql.cj.jdbc.Driver" 中由于mysql版本问题，需要加.cj-->
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/online-taxi?serverTimezone=UTC"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 记得修改对应的包名和存放路径 -->
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator
+			targetPackage="com.online.taxi.common.entity" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="com.online.taxi.common.mapping"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.online.taxi.common.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!--要生成的表tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+		<!--短信记录 
+		<table tableName="tbl_sms" domainObjectName="Sms"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table> -->
+		
+		<!-- 短信模板 -->
+		<table tableName="tbl_sms_template" domainObjectName="SmsTemplate"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		
+	</context>
+</generatorConfiguration>
