@@ -35,6 +35,12 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		
+		<!-- 引入feign依赖 ，用来实现接口伪装 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+				
 		<!-- 测试 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

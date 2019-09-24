@@ -13,12 +13,16 @@ import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.sms.SmsSendRequest;
 import com.online.taxi.common.dto.sms.SmsTemplateDto;
 import com.online.taxi.passenger.service.ShortMsgService;
+import com.online.taxi.passenger.service.SmsClient;
 
 @Service
 public class ShortMsgServiceImpl implements ShortMsgService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private SmsClient smsClient;
 	
 	@Override
 	public ResponseResult send(String phonenumber, String code) {
@@ -38,7 +42,9 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		data.add(dto);
 		
 		smsSendRequest.setData(data);
-		ResponseEntity<ResponseResult> result = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+//		ResponseEntity<ResponseResult> result = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+		
+		ResponseResult result = smsClient.sendSms(smsSendRequest);
 		System.out.println(result);
 		return null;
 	}
