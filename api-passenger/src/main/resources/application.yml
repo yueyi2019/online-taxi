@@ -15,29 +15,6 @@ eureka:
   client:
     #设置服务注册中心的URL
     service-url:                      
-      defaultZone: http://root:root@eureka-7901:7901/eureka/
+      defaultZone: http://root:root@eureka-7901:7901/eureka/,http://root:root@eureka-7902:7902/eureka/,http://root:root@eureka-7903:7903/eureka/
   instance: 
-    #服务刷新时间配置，每隔这个时间会主动心跳一次
-    lease-renewal-interval-in-seconds: 1      
-    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
-    lease-expiration-duration-in-seconds: 1   
     hostname: localhost
-    prefer-ip-address: true
-    #eureka注册中心的url link
-    status-page-url: /actuator/info           
-    #健康检查的url
-    health-check-url-path: /actuator/health   
-    instance-id: api-passenger
-    metadata-map:
-      user.name: root
-      user.password: root
-    
-#Admin监控
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: ALWAYS

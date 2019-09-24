@@ -42,10 +42,11 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- 健康检查 -->
+		<!-- 引用自定义通用组件 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<groupId>com.online.taxi.common</groupId>
+			<artifactId>online-taxi-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>
