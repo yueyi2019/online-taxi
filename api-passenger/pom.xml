@@ -48,6 +48,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- 引入hystrix依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+		
 		<!-- 引用自定义通用组件 -->
 		<dependency>
 			<groupId>com.online.taxi.common</groupId>

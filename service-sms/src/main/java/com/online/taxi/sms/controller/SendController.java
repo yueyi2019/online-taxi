@@ -22,6 +22,7 @@ public class SendController {
 	@Autowired
 	private AliService aliService;
 	
+	
 	@RequestMapping(value = "/alisms-template",method = RequestMethod.POST)
     public ResponseResult send(@RequestBody SmsSendRequest smsSendRequest){
 		//输出收到的参数内容
@@ -30,4 +31,5 @@ public class SendController {
         aliService.sendSms(smsSendRequest);
         return  ResponseResult.success("");
     }
+	
 }
