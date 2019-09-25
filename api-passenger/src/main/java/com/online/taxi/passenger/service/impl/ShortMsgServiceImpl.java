@@ -46,13 +46,13 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		smsSendRequest.setData(data);
 		
 		//ribbon调用
-		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-		ResponseResult result = resultEntity.getBody();
+//		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+//		ResponseResult result = resultEntity.getBody();
 		//feign调用
-//		ResponseResult result = smsClient.sendSms(smsSendRequest);
+		ResponseResult result = smsClient.sendSms(smsSendRequest);
 		
 		System.out.println(JSONObject.fromObject(result));
-		return null;
+		return result;
 	}
 
 }

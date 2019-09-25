@@ -27,7 +27,7 @@ public class SendController {
     public ResponseResult send(@RequestBody SmsSendRequest smsSendRequest){
 		//输出收到的参数内容
         JSONObject param = JSONObject.fromObject(smsSendRequest);
-        log.info(param.toString());
+        log.info("service-sms收到的参数："+param.toString());
         aliService.sendSms(smsSendRequest);
         return  ResponseResult.success("");
     }

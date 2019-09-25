@@ -19,3 +19,6 @@ eureka:
   instance: 
     hostname: localhost
     instance-id: api-passenger
+    
+feign:
+  #开启feignhystrix  hystrix:    enabled: true

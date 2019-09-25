@@ -24,7 +24,8 @@ public class SmsController {
 		String phonenumber = shortMsgRequest.getPhonenumber();
 		// 还应有一个服务，获取验证码，临时先这么用
 		String code = "123456";
-		shortMsgService.send(phonenumber, code);
+		ResponseResult result = shortMsgService.send(phonenumber, code);
+//		System.out.println(result.getCode());
 		return ResponseResult.success(null);
 	}
 	
