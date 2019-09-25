@@ -15,6 +15,8 @@ import com.online.taxi.common.dto.sms.SmsTemplateDto;
 import com.online.taxi.passenger.service.ShortMsgService;
 import com.online.taxi.passenger.service.SmsClient;
 
+import net.sf.json.JSONObject;
+
 @Service
 public class ShortMsgServiceImpl implements ShortMsgService {
 	
@@ -42,10 +44,14 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		data.add(dto);
 		
 		smsSendRequest.setData(data);
-//		ResponseEntity<ResponseResult> result = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
 		
-		ResponseResult result = smsClient.sendSms(smsSendRequest);
-		System.out.println(result);
+		//ribbon调用
+		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+		ResponseResult result = resultEntity.getBody();
+		//feign调用
+//		ResponseResult result = smsClient.sendSms(smsSendRequest);
+		
+		System.out.println(JSONObject.fromObject(result));
 		return null;
 	}
 
