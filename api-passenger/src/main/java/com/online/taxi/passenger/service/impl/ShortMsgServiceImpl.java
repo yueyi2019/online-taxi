@@ -51,7 +51,7 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		//feign调用
 		ResponseResult result = smsClient.sendSms(smsSendRequest);
 		
-		System.out.println(JSONObject.fromObject(result));
+		System.out.println("调用短信服务返回的结果"+JSONObject.fromObject(result));
 		return result;
 	}
 

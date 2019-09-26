@@ -25,12 +25,12 @@ public class SmsController {
 		// 还应有一个服务，获取验证码，临时先这么用
 		String code = "123456";
 		ResponseResult result = shortMsgService.send(phonenumber, code);
-//		System.out.println(result.getCode());
+		System.out.println(result.getCode());
 		return ResponseResult.success(null);
 	}
 	
 	public ResponseResult sendFail(ShortMsgRequest shortMsgRequest) {
-
+		
 		return ResponseResult.fail(-1, "熔断");
 	}
 }

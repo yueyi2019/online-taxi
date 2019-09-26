@@ -6,8 +6,11 @@ server:
 spring: 
   application: 
     name: api-passenger
-
-#注册中心
+  redis:    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 2000
+    #注册中心
 eureka: 
 #  server:
 #    enable-self-preservation: false       #关闭保护机制
