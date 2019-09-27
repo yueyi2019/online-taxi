@@ -23,3 +23,5 @@ app更新服务（service-app-update）：8003
 
 短信服务（service-sms）：8007
 
+网关（online-taxi-gateway）：9000
+
