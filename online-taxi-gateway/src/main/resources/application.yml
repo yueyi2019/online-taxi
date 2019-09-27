@@ -1,0 +1,16 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: online-taxi-gateway
+    
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7901:7901/eureka/
+  instance: 
+    hostname: localhost
+    instance-id: online-taxi-gateway 
