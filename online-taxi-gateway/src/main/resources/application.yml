@@ -18,4 +18,13 @@ eureka:
 #用ap代替api-passenger
 zuul:
   routes:
-    api-passenger: /ap/**
+    api-passenger: /api/**
+  
+  #设置什么都不忽略，原来默认忽略Cookie
+  sensitive-headers:
+  
+  #*只能匹配26个字母  ，**任意字母字符
+  #ignored-patterns: /*-passenger/**
+  
+#  ignored-services:
+#  - api-passenger
