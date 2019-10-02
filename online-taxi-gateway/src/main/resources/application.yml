@@ -4,6 +4,29 @@ server:
 spring:
   application:
     name: online-taxi-gateway
+  #网关
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+      # 全局过滤器为所有的响应加上头部X-Response-festival：国庆节
+      - AddResponseHeader=X-Response-festival,国庆节 
+      routes:
+      #转发到外部网站百度
+      - id: router-1
+        uri: http://www.baidu.com
+        predicates:
+        - Path=/bd/**
+      #不修饰的转到短信服务
+      - id: router-2
+        uri: lb://SERVICE-SMS
+        predicates:
+        - Path=/service-sms-gateway-test/**
+          
+        
+          
     
 #注册中心
 eureka: 
@@ -15,16 +38,3 @@ eureka:
     hostname: localhost
     instance-id: online-taxi-gateway 
 
-#用ap代替api-passenger
-zuul:
-  routes:
-    api-passenger: /api/**
-  
-  #设置什么都不忽略，原来默认忽略Cookie
-  sensitive-headers:
-  
-  #*只能匹配26个字母  ，**任意字母字符
-  #ignored-patterns: /*-passenger/**
-  
-#  ignored-services:
-#  - api-passenger
