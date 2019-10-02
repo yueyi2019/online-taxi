@@ -20,23 +20,13 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
-
-	/**
-	 * 注意是 org.springframework.cloud.client.discovery.DiscoveryClient;不是
-	 */
-	@Autowired
-	private DiscoveryClient client;
+@RequestMapping("/api-passenger-gateway-test")
+public class GatewayTestController {
 	
-	@GetMapping("/service-instance/{applicationName}")
-	public List<ServiceInstance> getServiceInstance(@PathVariable String applicationName) {
-		
-		return client.getInstances(applicationName);
-		
-		
+	@GetMapping("/hello")
+	public String helloWorld() {
+		return "api-passenger-hello";
 	}
-	
 	
 	@GetMapping("/api1")
 	public ResponseResult send(HttpServletRequest request) {
@@ -53,10 +43,7 @@ public class TestController {
 		return ResponseResult.success(result);
 	}
 	
-	@GetMapping("/hello")
-	public String helloWorld() {
-		return "hello";
-	}
+	
 	
 	
 }
