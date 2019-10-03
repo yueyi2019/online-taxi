@@ -1,0 +1,30 @@
+#服务端口
+server: 
+  port: 6001
+
+#应用名称及验证账号
+spring: 
+  application: 
+    name: config-server
+    
+  cloud:
+    config:
+      server:
+        git:
+        #https://github.com/yueyi2019/online-taxi-config-profile.git
+          uri: https://github.com/yueyi2019/online-taxi-config-profile
+          username: 
+          password: 
+          #默认是秒，因为git慢
+          timeout: 15
+    
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7901:7901/eureka/
+  instance: 
+    hostname: localhost
+    instance-id: config-server
+

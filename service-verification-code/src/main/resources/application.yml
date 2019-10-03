@@ -9,9 +9,6 @@ spring:
 
 #注册中心
 eureka: 
-#  server:
-#    enable-self-preservation: false       #关闭保护机制
-#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
     #设置服务注册中心的URL
     service-url:                      
