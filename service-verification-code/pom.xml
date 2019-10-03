@@ -45,6 +45,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- 配置中心客户端：config-client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-client</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<dependencyManagement>
