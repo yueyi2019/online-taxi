@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.online.taxi.common.dto.ResponseResult;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 
+@Slf4j
 @RestController
 @RequestMapping("/service-sms-gateway-test")
 public class GatewayTestController {
 	
 	@GetMapping("/hello")
 	public String helloWorld() {
+		log.info("service-sms-hello");
 		return "service-sms-hello";
 	}
 	

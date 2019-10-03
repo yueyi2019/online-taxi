@@ -31,7 +31,13 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-
+  #zipkin
+  zipkin:
+    base-url: http://localhost:9411/
+    #采样比例1，百分之八采样
+  sleuth:    sampler:      rate: 1  
+    
+    
 #mybatis配置
 mybatis:
   #mybatis配置文件所在路径

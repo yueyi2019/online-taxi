@@ -10,7 +10,13 @@ spring:
     host: 127.0.0.1
     port: 6379
     timeout: 2000  mvc:    servlet:      load-on-startup: 1
-    #注册中心
+  #zipkin
+  zipkin:
+    base-url: http://localhost:9411/
+    #采样比例1，百分之八采样
+  sleuth:
+    sampler:
+      rate: 1  #注册中心
 eureka: 
 #  server:
 #    enable-self-preservation: false       #关闭保护机制
@@ -24,6 +30,8 @@ eureka:
     instance-id: api-passenger
     
 feign:
-  #开启feignhystrix  hystrix:    enabled: true
+  #开启feignhystrix  hystrix:    enabled: true  
+  #加上超时时间
+  httpclient:    connection-timeout: 10000
     
 logging:  level:    org.springframework: DEBUG

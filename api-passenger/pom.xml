@@ -55,6 +55,17 @@
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 		
+		<!-- 引入sleuth依赖 -->
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency> -->
+		<!-- zipkin -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		
 		<!-- 引用自定义通用组件 -->
 		<dependency>
 			<groupId>com.online.taxi.common</groupId>
