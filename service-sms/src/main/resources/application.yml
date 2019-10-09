@@ -64,11 +64,6 @@ eureka:
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
     lease-expiration-duration-in-seconds: 1   
     hostname: localhost
-    prefer-ip-address: true
-    #eureka注册中心的url link
-    status-page-url: /actuator/info           
-    #健康检查的url
-    health-check-url-path: /actuator/health   
     instance-id: service-sms
     metadata-map:
       user.name: root
