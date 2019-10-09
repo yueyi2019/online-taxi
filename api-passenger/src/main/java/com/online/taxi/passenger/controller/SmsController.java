@@ -19,9 +19,11 @@ public class SmsController {
 	private ShortMsgService shortMsgService;
 
 	@HystrixCommand(fallbackMethod = "sendFail")
-	@PostMapping("/send")
-	public ResponseResult send(@RequestBody ShortMsgRequest shortMsgRequest) {
+	@PostMapping("/verify-code/send")
+	public ResponseResult verifyCodeSend(@RequestBody ShortMsgRequest shortMsgRequest) {
 		String phonenumber = shortMsgRequest.getPhonenumber();
+		//校验手机号
+		
 		// 还应有一个服务，获取验证码，临时先这么用
 		String code = "123456";
 		ResponseResult result = shortMsgService.send(phonenumber, code);

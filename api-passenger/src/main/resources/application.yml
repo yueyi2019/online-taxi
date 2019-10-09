@@ -5,11 +5,11 @@ server:
 #应用名称及验证账号
 spring: 
   application: 
-    name: api-passenger
+    name: api-passenger    admin:      enabled: true
   redis:    database: 0
     host: 127.0.0.1
     port: 6379
-    timeout: 2000  mvc:    servlet:      load-on-startup: 1
+    timeout: 2000
   #zipkin
   zipkin:
     base-url: http://localhost:9411/
@@ -18,9 +18,6 @@ spring:
     sampler:
       rate: 1  #注册中心
 eureka: 
-#  server:
-#    enable-self-preservation: false       #关闭保护机制
-#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
     #设置服务注册中心的URL
     service-url:                      
@@ -29,9 +26,22 @@ eureka:
     hostname: localhost
     instance-id: api-passenger
     
-feign:
-  #开启feignhystrix  hystrix:    enabled: true  
-  #加上超时时间
-  httpclient:    connection-timeout: 10000
-    
+#feign:
+#  #开启feignhystrix#  hystrix:#    enabled: true  
+
+ribbon:  eager-load:
+    enabled: true    clients:    - SERVICE-SMS
+
+#Admin监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true
+          
 logging:  level:    org.springframework: DEBUG

@@ -26,7 +26,7 @@ public class SmsClientFallback implements SmsClient {
 		if(StringUtils.isBlank(noticeString)) {
 			//发送短信，或者调用电话接口
 			System.out.println("通知别人我熔断了");
-			redisTemplate.opsForValue().set(key, "notice", 10, TimeUnit.SECONDS);
+			redisTemplate.opsForValue().set(key, "notice", 30, TimeUnit.SECONDS);
 			
 		}else {
 			System.out.println("通知过了，我先不通知了");
