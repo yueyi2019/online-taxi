@@ -36,5 +36,7 @@ zuul:
 #  - /*-passenger/**
 
   #以下配置为空表示：所有请求头都透传到后面微服务。
-  #sensitive-headers:
-  
+  sensitive-headers:
+logging:
+  level:
+    org.springframework: DEBUG

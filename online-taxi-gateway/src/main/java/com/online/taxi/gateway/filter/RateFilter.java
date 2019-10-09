@@ -24,8 +24,8 @@ public class RateFilter extends ZuulFilter {
 	@Override
 	public Object run() throws ZuulException {
 		//获取上下文
-				RequestContext requestContext = RequestContext.getCurrentContext();
-				HttpServletRequest request = requestContext.getRequest();
+		RequestContext requestContext = RequestContext.getCurrentContext();
+		HttpServletRequest request = requestContext.getRequest();
 				
 		//拿不到令牌马上返回。
 		if(!RATE_LIMITER.tryAcquire()) {
