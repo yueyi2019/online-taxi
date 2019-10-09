@@ -1,0 +1,31 @@
+server:
+  port: 6010
+spring: 
+  application: 
+    name: cloud-admin
+  security:
+    user:
+      name: root
+      password: root
+      
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7901:7901/eureka/
+  instance: 
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #yml加双引号，properties不用加
+        include: "*"    
+  endpoint:
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true   
