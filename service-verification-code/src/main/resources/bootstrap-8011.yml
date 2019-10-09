@@ -11,9 +11,9 @@ spring:
 #    password: guest
 
 #先注释掉 配置中心
-#  cloud:#    config:#      discovery:#        enabled: true
-#        service-id: config-server
-#      profile: qa
+  cloud:     config:      discovery:        enabled: true
+        service-id: config-server
+      profile: qa
 #注册中心-此时注册中去用于找到config-server
 eureka: 
   client:
@@ -29,6 +29,6 @@ eureka:
     instance-id: service-verification-code
 
 management:  endpoints:    web:      exposure:
-      #yml加双引号，properties不用加        include: "*"
+        #yml加双引号，properties不用加        include: "*"
         
-env: code
+#env: code
