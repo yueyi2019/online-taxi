@@ -23,17 +23,17 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Autowired
-	private SmsClient smsClient;
+//	@Autowired
+//	private SmsClient smsClient;
 	
 	@Override
-	public ResponseResult send(String phonenumber, String code) {
-		System.out.println("手机号和验证码："+phonenumber+","+code);
+	public ResponseResult send(String phoneNumber, String code) {
+		System.out.println("手机号和验证码："+phoneNumber+","+code);
 		
 		String url = "http://service-sms/send/alisms-template";
 		SmsSendRequest smsSendRequest = new SmsSendRequest();
-		String[] phonenumbers = new String[] {phonenumber};
-		smsSendRequest.setReceivers(phonenumbers);
+		String[] phoneNumbers = new String[] {phoneNumber};
+		smsSendRequest.setReceivers(phoneNumbers);
 		
 		List<SmsTemplateDto> data = new ArrayList<SmsTemplateDto>();
 		SmsTemplateDto dto = new SmsTemplateDto();

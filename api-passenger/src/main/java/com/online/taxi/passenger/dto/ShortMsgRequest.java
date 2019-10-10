@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class ShortMsgRequest {
 	
-	private String phonenumber;
+	private String phoneNumber;
 }
