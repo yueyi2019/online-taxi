@@ -8,6 +8,11 @@ public enum CommonStatus {
 	VERIFY_CODE_ERROR(10001,"短信验证码验证失败"),
 	
 	
+	/**api-passenger 乘客api  10101-10199*/
+	PHONENUMBER_EMPTY(10101,"手机号为空"),
+	PHONENUMBER_ERROR(10102,"手机号格式不正确"),
+	
+	
 	/**
      * 	操作成功
      */
