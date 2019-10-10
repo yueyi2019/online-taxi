@@ -12,7 +12,7 @@ spring:
     #配置MySQL的驱动程序类
     driver-class-name: com.mysql.cj.jdbc.Driver                             
     #数据库连接地址
-    url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=UTC 
+    url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     #数据库连接用户名
     username: root                                                        
     #数据库连接密码
@@ -35,7 +35,9 @@ spring:
   zipkin:
     base-url: http://localhost:9411/
     #采样比例1，百分之八采样
-  sleuth:    sampler:      rate: 1  
+  sleuth:
+    sampler:
+      rate: 1  
     
     
 #mybatis配置

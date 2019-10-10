@@ -49,7 +49,7 @@ public class AliServiceImpl implements AliService {
                 if (!templateMaps.containsKey(template.getId())) {
                 	//此处注释掉的内容为，将db模板加载到内存
                 	SmsTemplate t = smsTemplateDto.getByTemplateId(template.getId());
-                	System.out.println(t.getContent());;
+                	System.out.println(t.getContent());
                     templateMaps.put(template.getId(),
                     		smsTemplateDto.getByTemplateId(template.getId()).getContent());
                 }
