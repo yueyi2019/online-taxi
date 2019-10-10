@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 
 import com.online.taxi.common.constant.IdentityConstant;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
@@ -30,7 +31,14 @@ public class VerifyCodeController {
 	
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
-	
+
+	/**
+	 * 生成 验证码
+	 * 生成对应身份，手机号 的验证码并保存redis，设置过期2分钟
+	 * @param identity
+	 * @param phoneNumber
+	 * @return
+	 */
 	@GetMapping("/generate/{identity}/{phoneNumber}")
 	public ResponseResult<VerifyCodeResponse> generate(@PathVariable("identity") int identity ,@PathVariable ("phoneNumber") String phoneNumber) {
 		log.info("身份类型："+identity+",手机号："+phoneNumber);
@@ -53,13 +61,15 @@ public class VerifyCodeController {
 	
 	@PostMapping("/verify")
 	public ResponseResult verify(@RequestBody CodeVerifyRequest request) {
+		log.info("校验验证码"+ JSONObject.fromObject(request));
 		//获取手机号和验证码
-		String phonenumber = request.getPhonenumber();
-
+		String phoneNumber = request.getPhoneNumber();
+		int identity = request.getIdentity();
 		String code = request.getCode();
 		
 		//生成redis key
-		String key = VerifyCodeConstant.PASSENGER_LOGIN_KEY_PRE+phonenumber;
+		String keyPre = generateKeyPreByIdentity(identity);
+		String key = keyPre + phoneNumber;
 		BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
 		String redisCode = codeRedis.get();
 		

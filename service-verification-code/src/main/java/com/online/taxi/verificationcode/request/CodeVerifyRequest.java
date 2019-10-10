@@ -7,7 +7,7 @@ public class CodeVerifyRequest {
 
 	private int identity;
 
-	private String phonenumber;
+	private String phoneNumber;
 	
 	private String code;
 }
