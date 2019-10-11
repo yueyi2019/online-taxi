@@ -6,12 +6,46 @@ server:
 spring: 
   application: 
     name: service-passenger-user
+  datasource: #数据库连接配置
+    #配置当前姚使用的数据源的操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #配置MySQL的驱动程序类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库连接地址
+    url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    #数据库连接用户名
+    username: root
+    #数据库连接密码
+    password: root
+    #进行数据库连接池的配置
+    dbcp2:
+      #初始化提供的连接数
+      initial-size: 5
+      #数据库连接池的最小维持连接数
+      min-idle: 5
+      #最大的连接数
+      max-total: 5
+      #等待连接获取的最大超时时间
+      max-wait-millis: 200
+      #验证数据库连接的有效性
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+
+#mybatis配置
+mybatis:
+  #mybatis配置文件所在路径
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  #定义所有操作类的别名所在包
+  type-aliases-package: com.online.taxi.common
+  #所有的mapper映射文件
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
 
 #注册中心
-eureka: 
-#  server:
-#    enable-self-preservation: false       #关闭保护机制
-#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
+eureka:
   client:
     #设置服务注册中心的URL
     service-url:                      

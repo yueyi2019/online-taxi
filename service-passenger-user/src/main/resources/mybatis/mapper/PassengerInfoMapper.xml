@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.taxi.passenger.user.mapper.PassengerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.online.taxi.common.entity.PassengerInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="passenger_name" property="passengerName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+    <result column="passenger_type" property="passengerType" jdbcType="TINYINT" />
+    <result column="register_type" property="registerType" jdbcType="SMALLINT" />
+    <result column="last_login_method" property="lastLoginMethod" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone_number, birthday, passenger_name, gender, head_img, passenger_type, register_type, 
+    last_login_method, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_passenger_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPhoneNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_passenger_info
+    where phone_number = #{phoneNumber}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_passenger_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.online.taxi.common.entity.PassengerInfo" >
+    insert into tbl_passenger_info (id, phone_number, birthday, 
+      passenger_name, gender, head_img, 
+      passenger_type, register_type, last_login_method, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{passengerName,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, #{headImg,jdbcType=VARCHAR}, 
+      #{passengerType,jdbcType=TINYINT}, #{registerType,jdbcType=SMALLINT}, #{lastLoginMethod,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.online.taxi.common.entity.PassengerInfo" >
+    insert into tbl_passenger_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="passengerName != null" >
+        passenger_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="headImg != null" >
+        head_img,
+      </if>
+      <if test="passengerType != null" >
+        passenger_type,
+      </if>
+      <if test="registerType != null" >
+        register_type,
+      </if>
+      <if test="lastLoginMethod != null" >
+        last_login_method,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="passengerName != null" >
+        #{passengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="headImg != null" >
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        #{passengerType,jdbcType=TINYINT},
+      </if>
+      <if test="registerType != null" >
+        #{registerType,jdbcType=SMALLINT},
+      </if>
+      <if test="lastLoginMethod != null" >
+        #{lastLoginMethod,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.online.taxi.common.entity.PassengerInfo" >
+    update tbl_passenger_info
+    <set >
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="passengerName != null" >
+        passenger_name = #{passengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="headImg != null" >
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerType != null" >
+        passenger_type = #{passengerType,jdbcType=TINYINT},
+      </if>
+      <if test="registerType != null" >
+        register_type = #{registerType,jdbcType=SMALLINT},
+      </if>
+      <if test="lastLoginMethod != null" >
+        last_login_method = #{lastLoginMethod,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.online.taxi.common.entity.PassengerInfo" >
+    update tbl_passenger_info
+    set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      passenger_name = #{passengerName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      passenger_type = #{passengerType,jdbcType=TINYINT},
+      register_type = #{registerType,jdbcType=SMALLINT},
+      last_login_method = #{lastLoginMethod,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
