@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.sms.SmsSendRequest;
 import com.online.taxi.passenger.service.SmsClient;
-
+/**
+ * @author yueyi2019
+ */
 @Component
 public class SmsClientFallback implements SmsClient {
 

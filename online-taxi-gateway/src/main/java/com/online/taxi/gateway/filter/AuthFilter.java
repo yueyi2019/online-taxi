@@ -12,6 +12,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 /**
  * 鉴权filter
+ * @author yueyi2019
  */
 @Component
 public class AuthFilter extends ZuulFilter {
@@ -28,7 +29,8 @@ public class AuthFilter extends ZuulFilter {
 		String uri = request.getRequestURI();
 		System.out.println("来源uri："+uri);
 		//只有此接口/api-passenger/api-passenger-gateway-test/hello才被拦截
-		if("/api-passenger/api-passenger-gateway-test/hello".equalsIgnoreCase(uri)) {
+		String checkUri = "/api-passenger/api-passenger-gateway-test/hello";
+		if(checkUri.equalsIgnoreCase(uri)) {
 			return true;
 		}
 		
@@ -43,7 +45,9 @@ public class AuthFilter extends ZuulFilter {
 		HttpServletRequest request = requestContext.getRequest();
 		
 		String token = request.getHeader("Authorization");
-		if(StringUtils.isNotBlank(token) && "1234".equals(token)) {
+		//如果token是1234，过
+		String defaultToken = "1234";
+		if(StringUtils.isNotBlank(token) && defaultToken.equals(token)) {
 			System.out.println("校验通过");
 		} else {
 			requestContext.setSendZuulResponse(false);

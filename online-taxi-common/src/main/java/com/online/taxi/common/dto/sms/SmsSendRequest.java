@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import lombok.Data;
-
+/**
+ * @author yueyi2019
+ */
 @Data
 public class SmsSendRequest{
 

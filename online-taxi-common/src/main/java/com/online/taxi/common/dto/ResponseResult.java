@@ -2,11 +2,10 @@ package com.online.taxi.common.dto;
 
 import java.io.Serializable;
 
-import com.online.taxi.common.constant.CommonStatus;
+import com.online.taxi.common.constant.CommonStatusEnum;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 通用返回值处理类
@@ -31,7 +30,7 @@ public class ResponseResult<T> implements Serializable {
      * @return ResponseResult实例
      */
     public static <T> ResponseResult success(T data) {
-        return new ResponseResult().setCode(CommonStatus.SUCCESS.getCode()).setMessage(CommonStatus.SUCCESS.getValue()).setData(data);
+        return new ResponseResult().setCode(CommonStatusEnum.SUCCESS.getCode()).setMessage(CommonStatusEnum.SUCCESS.getValue()).setData(data);
     }
 
     /**
@@ -42,7 +41,7 @@ public class ResponseResult<T> implements Serializable {
      * @return ResponseResult实例
      */
     public static <T> ResponseResult fail(T data) {
-        return new ResponseResult().setCode(CommonStatus.INTERNAL_SERVER_EXCEPTION.getCode()).setMessage(CommonStatus.INTERNAL_SERVER_EXCEPTION.getValue()).setData(data);
+        return new ResponseResult().setCode(CommonStatusEnum.INTERNAL_SERVER_EXCEPTION.getCode()).setMessage(CommonStatusEnum.INTERNAL_SERVER_EXCEPTION.getValue()).setData(data);
     }
 
     /**

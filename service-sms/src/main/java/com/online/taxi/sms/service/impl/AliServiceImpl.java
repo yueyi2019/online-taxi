@@ -20,12 +20,16 @@ import com.online.taxi.sms.service.AliService;
 
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
-
+/**
+ * @author yueyi2019
+ */
 @Service
 @Slf4j
 public class AliServiceImpl implements AliService {
 	
-	// 缓存用于替换内容的模板
+	/**
+	*   缓存用于替换内容的模板
+	 */
     private Map<String, String> templateMaps = new HashMap<String, String>();
     
     @Autowired
@@ -96,47 +100,7 @@ public class AliServiceImpl implements AliService {
     
     private int sendMsg(String phoneNumber, String templateCode, String param) {
         /**
-    	try {
-            //可自助调整超时时间
-            System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
-            System.setProperty("sun.net.client.defaultReadTimeout", "10000");
-
-            //初始化acsClient,暂不支持region化
-            IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-            DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
-            IAcsClient acsClient = new DefaultAcsClient(profile);
-
-            //组装请求对象-具体描述见控制台-文档部分内容
-            SendSmsRequest request = new SendSmsRequest();
-            //必填:待发送手机号
-            request.setPhoneNumbers(phoneNumber);
-            //必填:短信签名-可在短信控制台中找到
-            request.setSignName(sign);
-            //必填:短信模板-可在短信控制台中找到
-            request.setTemplateCode(templateCode);
-            //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
-            request.setTemplateParam(param);
-            //选填-上行短信扩展码(无特殊需求用户请忽略此字段)
-            //request.setSmsUpExtendCode("90997");
-
-            //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
-            request.setOutId("yourOutId");
-
-            //hint 此处可能会抛出异常，注意catch
-            SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-            log.info("短信结果："+JSONObject.fromObject(sendSmsResponse));
-            // 解析发送结果
-            if (sendSmsResponse != null && sendSmsResponse.getCode().trim().equals("OK")) {
-                System.out.println(sendSmsResponse.getBizId());
-                log.info("阿里短信通道 成功 - 手机号码 - " + phoneNumber + " 内容 " + param);
-                return SmsEnum.OK.getCode();
-            } else {
-                log.info("阿里短信通道 失败 - 手机号码 - " + phoneNumber + " 内容 " + param);
-                return SmsEnum.FAIL.getCode();
-            }
-        }catch (Exception e){
-            return SmsEnum.EXCEPTION.getCode();
-        }
+         * 按照短信供应商的api编写即可
     	*/
     	return SmsStatusEnum.SEND_SUCCESS.getCode();
 

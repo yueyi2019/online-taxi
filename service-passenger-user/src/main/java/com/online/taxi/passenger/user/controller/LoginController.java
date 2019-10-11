@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author yueyi2019
+ */
 @RestController
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("/login")
+public class LoginController {
 
     @Autowired
     private PassengerInfoDao dao;
 
-    @PostMapping("/login")
-    public ResponseResult login(@RequestBody LoginRequest request){
+    @PostMapping("/passenger")
+    public ResponseResult passengerLogin(@RequestBody LoginRequest request){
         String phoneNumber = request.getPhoneNumber();
         PassengerInfo passengerInfo = dao.selectByPhoneNumber(phoneNumber);
         if (passengerInfo == null){

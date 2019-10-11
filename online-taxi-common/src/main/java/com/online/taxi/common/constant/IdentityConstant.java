@@ -1,5 +1,8 @@
 package com.online.taxi.common.constant;
 
+/**
+ * @author yueyi2019
+ */
 public class IdentityConstant {
     /**
      * 乘客标识

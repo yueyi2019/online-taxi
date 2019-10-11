@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.online.taxi.common.entity.SmsTemplate;
 import com.online.taxi.sms.mapper.SmsTemplateMapper;
-
+/**
+ * @author yueyi2019
+ */
 @Service
 public class SmsTemplateDao {
 	

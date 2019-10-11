@@ -15,7 +15,9 @@ import com.online.taxi.common.dto.verificationcode.VerifyCodeResponse;
 import com.online.taxi.passenger.service.VerificationCodeService;
 
 import javax.annotation.Resource;
-
+/**
+ * @author yueyi2019
+ */
 @Service
 public class VerificationCodeServiceImpl implements VerificationCodeService {
 

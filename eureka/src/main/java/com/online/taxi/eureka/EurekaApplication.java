@@ -7,7 +7,9 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import com.netflix.eureka.registry.InstanceRegistry;
 import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl;
-
+/**
+ * @author yueyi2019
+ */
 @EnableEurekaServer
 @SpringBootApplication
 public class EurekaApplication {

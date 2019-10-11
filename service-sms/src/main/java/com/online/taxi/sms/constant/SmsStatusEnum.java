@@ -1,7 +1,9 @@
 package com.online.taxi.sms.constant;
 
 import lombok.Getter;
-
+/**
+ * @author yueyi2019
+ */
 public enum SmsStatusEnum {
 	
 	/**

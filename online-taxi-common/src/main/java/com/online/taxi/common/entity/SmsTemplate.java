@@ -1,7 +1,9 @@
 package com.online.taxi.common.entity;
 
 import java.util.Date;
-
+/**
+ * @author yueyi2019
+ */
 public class SmsTemplate {
     private Integer id;
 

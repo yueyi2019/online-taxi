@@ -19,7 +19,9 @@ import net.sf.json.JSONObject;
 
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-
+/**
+ * @author yueyi2019
+ */
 @Slf4j
 @RestController
 @RequestMapping("/api-passenger-gateway-test")

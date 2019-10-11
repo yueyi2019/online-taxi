@@ -11,6 +11,8 @@ import org.apache.commons.lang.StringUtils;
  *
  */
 public class PhoneUtil {
+
+	private static final int PHONE_LENGTH = 11;
 	/**
 	 	中国电信号段 133、149、153、173、177、180、181、189、199
 		中国联通号段 130、131、132、145、155、156、166、175、176、185、186
@@ -30,7 +32,7 @@ public class PhoneUtil {
 	    	return false;
 	    }
 	    phone = phone.trim();
-	    if (phone.length() != 11) {
+	    if (phone.length() != PHONE_LENGTH) {
 	        return false;
 	    } else {
 	        Pattern p = Pattern.compile(PHONE_REGEX);

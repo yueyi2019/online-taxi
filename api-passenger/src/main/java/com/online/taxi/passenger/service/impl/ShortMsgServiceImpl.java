@@ -16,15 +16,14 @@ import com.online.taxi.passenger.service.ShortMsgService;
 import com.online.taxi.passenger.service.SmsClient;
 
 import net.sf.json.JSONObject;
-
+/**
+ * @author yueyi2019
+ */
 @Service
 public class ShortMsgServiceImpl implements ShortMsgService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
-//	@Autowired
-//	private SmsClient smsClient;
 	
 	@Override
 	public ResponseResult send(String phoneNumber, String code) {
@@ -38,7 +37,8 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		List<SmsTemplateDto> data = new ArrayList<SmsTemplateDto>();
 		SmsTemplateDto dto = new SmsTemplateDto();
 		dto.setId("SMS_144145499");
-		HashMap<String, Object> templateMap = new HashMap<>();
+		int templateSize = 1;
+		HashMap<String, Object> templateMap = new HashMap<String, Object>(templateSize);
 		templateMap.put("code", code);
 		dto.setTemplateMap(templateMap);
 		data.add(dto);
@@ -48,9 +48,7 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		//ribbon调用
 		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
 		ResponseResult result = resultEntity.getBody();
-		//feign调用
-//		ResponseResult result = smsClient.sendSms(smsSendRequest);
-		
+
 		System.out.println("调用短信服务返回的结果"+JSONObject.fromObject(result));
 		return result;
 	}

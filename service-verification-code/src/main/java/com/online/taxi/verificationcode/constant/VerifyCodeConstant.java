@@ -1,5 +1,7 @@
 package com.online.taxi.verificationcode.constant;
-
+/**
+ * @author yueyi2019
+ */
 public class VerifyCodeConstant {
 	/**
 	 * 乘客登录验证码 key前缀

@@ -18,7 +18,9 @@ import net.sf.json.JSONObject;
 
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-
+/**
+ * @author yueyi2019
+ */
 @RestController
 @RequestMapping("/test")
 public class TestController {

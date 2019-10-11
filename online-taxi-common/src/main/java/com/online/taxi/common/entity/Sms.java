@@ -3,7 +3,9 @@ package com.online.taxi.common.entity;
 import java.util.Date;
 
 import lombok.Data;
-
+/**
+ * @author yueyi2019
+ */
 @Data
 public class Sms {
     private Integer id;
