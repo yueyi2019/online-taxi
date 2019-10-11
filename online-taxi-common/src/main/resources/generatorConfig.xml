@@ -50,18 +50,25 @@
 		</javaClientGenerator>
 		
 		<!--要生成的表tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-		<!--短信记录 
-		<table tableName="tbl_sms" domainObjectName="Sms"
+		<!--短信记录 -->
+		<!--<table tableName="tbl_sms" domainObjectName="Sms"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table> -->
 		
 		<!-- 短信模板 -->
-		<table tableName="tbl_sms_template" domainObjectName="SmsTemplate"
+		<!--<table tableName="tbl_sms_template" domainObjectName="SmsTemplate"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
+		</table>-->
+
+		<!--乘客 信息表-->
+		<table tableName="tbl_passenger_info" domainObjectName="PassengerInfo"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
 		</table>
 		
 		
