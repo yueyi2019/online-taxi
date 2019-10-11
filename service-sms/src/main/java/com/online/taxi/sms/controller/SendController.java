@@ -15,19 +15,17 @@ import net.sf.json.JSONObject;
 
 @RestController
 @RequestMapping("/send")
-@SuppressWarnings("all")
 @Slf4j
 public class SendController {
 	
 	@Autowired
 	private AliService aliService;
-	
-	
+
 	@RequestMapping(value = "/alisms-template",method = RequestMethod.POST)
     public ResponseResult send(@RequestBody SmsSendRequest smsSendRequest){
 		//输出收到的参数内容
         JSONObject param = JSONObject.fromObject(smsSendRequest);
-        log.info("service-sms收到的参数："+param.toString());
+        log.info("/send/alisms-template   request："+param.toString());
         aliService.sendSms(smsSendRequest);
         return  ResponseResult.success("");
     }
