@@ -1,6 +1,7 @@
 package com.online.taxi.passenger.user.controller;
 
 import com.netflix.discovery.converters.Auto;
+import com.online.taxi.common.constant.IdentityConstant;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.passengeruser.LoginRequest;
 import com.online.taxi.common.entity.PassengerInfo;
@@ -31,8 +32,9 @@ public class LoginController {
         }else {
             //更新最近登录时间
         }
+        int passengerId = 1;
         //生成通过jwt 生成 token，以后需要登录认证的接口，都需要带上token，还有签名规则
-
+        String subject = IdentityConstant.PASSENGER +"_"+phoneNumber+"_"+passengerId;
         return ResponseResult.success(null);
     }
 }
