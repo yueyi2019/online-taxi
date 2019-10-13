@@ -1,7 +1,9 @@
 package com.online.taxi.common.util;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
@@ -12,10 +14,17 @@ public class JwtUtil {
 
     private static String secret = "ko346134h_we]rg3in_yip1!";
 
+    /**
+     *
+     * @param subject
+     * @param issueDate 签发时间
+     * @return
+     */
     public static String createToken(String subject, Date issueDate) {
         String compactJws = Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(issueDate)
+                .setExpiration(new Date(System.currentTimeMillis()+10000))
                 .signWith(io.jsonwebtoken.SignatureAlgorithm.HS512, secret)
                 .compact();
         return compactJws;
@@ -27,11 +36,17 @@ public class JwtUtil {
      * @return
      * @throws Exception
      */
-    public static String parseToken(String token) throws Exception {
-        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        if (claims != null){
-            return claims.getSubject();
+    public static String parseToken(String token) {
+        try {
+            Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+            if (claims != null){
+                return claims.getSubject();
+            }
+        }catch (ExpiredJwtException e){
+            e.printStackTrace();
+            System.out.println("jwt过期了");
         }
+
         return "";
     }
 
@@ -39,11 +54,8 @@ public class JwtUtil {
         String subject = "wo";
         String token = createToken(subject,new Date());
         System.out.println(token);
-        try {
-            System.out.println(parseToken(token));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(parseToken(token));
+
     }
 
 }

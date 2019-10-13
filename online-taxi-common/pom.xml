@@ -32,6 +32,14 @@
 			<version>0.7.0</version>
 		</dependency>
 
+		<!--apache 加密-->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.11</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
