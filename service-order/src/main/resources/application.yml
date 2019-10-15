@@ -6,6 +6,13 @@ server:
 spring: 
   application: 
     name: service-order
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 2000
+    password:
+
 
 #注册中心
 eureka: 
