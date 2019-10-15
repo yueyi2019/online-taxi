@@ -1,11 +1,14 @@
 package com.online.taxi.verificationcode.controller;
 
+import com.netflix.discovery.converters.Auto;
+import com.online.taxi.verificationcode.service.ConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-/**
+/**测试获取属性的类
  * @author yueyi2019
  */
 @RefreshScope
@@ -15,10 +18,18 @@ public class ConfigController {
 
 	@Value("${env}")
 	private String env;
-	
-	@GetMapping("/env")
+
+	@Autowired
+	private ConfigService configService;
+
+	@GetMapping("/env1")
 	public String env() {
-		
-		return "env:"+env;
+
+		return configService.getEnv1();
+	}
+
+	@GetMapping("/env2")
+	public String env2() {
+		return configService.getEnv2();
 	}
 }

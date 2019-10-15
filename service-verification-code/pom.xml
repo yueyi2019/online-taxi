@@ -38,10 +38,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<!-- 总线 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
+		<!--</dependency>-->
 		
 		<!-- 测试 -->
 		<dependency>
@@ -51,10 +51,10 @@
 		</dependency>
 		
 		<!-- 配置中心客户端：config-client -->
-		 <dependency>
+		 <!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-client</artifactId>
-		</dependency>
+		</dependency>-->
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
