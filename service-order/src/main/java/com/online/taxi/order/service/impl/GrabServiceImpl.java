@@ -6,11 +6,11 @@ import com.online.taxi.order.service.GrabService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author yueyi2019
@@ -21,8 +21,12 @@ public class GrabServiceImpl implements GrabService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    /**
+     * redis 客户端
+     */
     @Autowired
-    private RedissonClient redissonClient;
+    @Qualifier("redissonClientCostum")
+    private RedissonClient redissonClientCostum;
 
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
@@ -30,22 +34,27 @@ public class GrabServiceImpl implements GrabService {
         String lockKey = (RedisKeyConstant.GRAB_LOCK_ORDER_KEY_PRE + orderId).intern();
         String uuid = UUID.randomUUID().toString();
 
-        RLock rLock = redissonClient.getLock(lockKey);
+        RLock rLock = redissonClientCostum.getLock(lockKey);
+        boolean isLock = rLock.tryLock();
+        if (!isLock){
+            System.out.println(Thread.currentThread().getName()+"加锁失败");
+            return ResponseResult.fail(-1,"抢单失败");
+        }else {
+            System.out.println(Thread.currentThread().getName()+"加锁成功");
+        }
         try {
-            rLock.lock(10, TimeUnit.SECONDS);
 
-            //业务逻辑
+            //通过断点模拟业务执行时间。
             try {
-                Thread.sleep(15000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("执行抢单逻辑");
+            System.out.println(Thread.currentThread().getName()+"执行抢单逻辑");
         }finally {
+
             rLock.unlock();
         }
-        System.out.println("2");
-        System.out.println("1");
         return null;
     }
 }

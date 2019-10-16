@@ -13,6 +13,13 @@ spring:
     timeout: 2000
     password:
 
+#自定义哨兵
+sentinel:
+  address:
+    - 127.0.0.1:26379
+    - 127.0.0.1:26479
+    - 127.0.0.1:26579
+  masterName: mymaster
 
 #注册中心
 eureka: 
