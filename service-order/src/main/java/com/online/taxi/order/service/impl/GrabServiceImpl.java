@@ -27,8 +27,10 @@ public class GrabServiceImpl implements GrabService {
     public ResponseResult grabOrder(int orderId , int driverId){
         //生成key
         String lockKey = (RedisKeyConstant.GRAB_LOCK_ORDER_KEY_PRE + orderId).intern();
-
         RLock rLock = redissonCostum.getLock(lockKey);
+        //实现红锁加入下面这2行
+//        RedissonRedLock redLock = new RedissonRedLock(rLock);
+//        redLock.lock();
         rLock.lock();
 
         try {
