@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  * @author yueyi2019
  */
 @Component
-public class RedisSentinelConfig {
+public class RedisConfig {
 
     @Autowired
     RedisSentinelProperties properties;
 
-    @Bean(name = "redissonClientCostum")
+    @Bean(name = "redisson")
     @Order(1)
     public Redisson getRedisson(){
 

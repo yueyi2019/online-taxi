@@ -20,23 +20,27 @@ public class GrabServiceImpl implements GrabService {
     private RedisTemplate<String, String> redisTemplate;
 
     @Autowired
-    @Qualifier("redissonClientCostum")
-    private Redisson redissonCostum;
+    @Qualifier("redisson")
+    private Redisson redisson;
 
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
         //生成key
         String lockKey = (RedisKeyConstant.GRAB_LOCK_ORDER_KEY_PRE + orderId).intern();
-        RLock rLock = redissonCostum.getLock(lockKey);
+        //redisson锁
+        RLock rLock = redisson.getLock(lockKey);
+        rLock.lock();
+
+
         //实现红锁加入下面这2行
 //        RedissonRedLock redLock = new RedissonRedLock(rLock);
 //        redLock.lock();
-        rLock.lock();
+
 
         try {
             //通过断点模拟业务执行时间。
             try {
-                Thread.sleep(4000);
+                Thread.sleep(20000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
