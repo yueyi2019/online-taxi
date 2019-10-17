@@ -3,7 +3,6 @@ package com.online.taxi.order.service.impl;
 import com.online.taxi.common.constant.RedisKeyConstant;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.order.service.GrabService;
-import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +33,18 @@ public class GrabServiceImpl implements GrabService {
     public ResponseResult grabOrder(int orderId , int driverId){
         //生成key
         String lockKey = (RedisKeyConstant.GRAB_LOCK_ORDER_KEY_PRE + orderId).intern();
-        //redisson锁
+        //redisson锁 哨兵
 //        RLock rLock = redisson.getLock(lockKey);
 //        rLock.lock();
 
+        //redisson锁 单节点
+        RLock rLock = redissonRed1.getLock(lockKey);
 
         //红锁
-        RLock rLock1 = redissonRed1.getLock(lockKey);
-        RLock rLock2 = redissonRed2.getLock(lockKey);
-        RLock rLock3 = redissonRed2.getLock(lockKey);
-        RedissonRedLock rLock = new RedissonRedLock(rLock1,rLock2,rLock3);
+//        RLock rLock1 = redissonRed1.getLock(lockKey);
+//        RLock rLock2 = redissonRed2.getLock(lockKey);
+//        RLock rLock3 = redissonRed2.getLock(lockKey);
+//        RedissonRedLock rLock = new RedissonRedLock(rLock1,rLock2,rLock3);
         rLock.lock();
 
 

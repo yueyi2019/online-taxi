@@ -15,7 +15,7 @@ public class RedisConfig {
 
     @Autowired
     RedisSentinelProperties properties;
-    //以下为redisson锁
+    //以下为redisson锁，哨兵
 //    @Bean(name = "redisson")
 //    @Order(1)
 //    public Redisson getRedisson(){
