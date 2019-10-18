@@ -34,12 +34,13 @@
 		<javaModelGenerator
 			targetPackage="com.online.taxi.common.entity" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
+			<!--是否针对string类型字段在set的时候进行trim调用-->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- 生成映射文件的包名和位置 -->
-		<sqlMapGenerator targetPackage="com.online.taxi.common.mapping"
-			targetProject="src/main/java">
+		<sqlMapGenerator targetPackage="mybatis/mapper"
+			targetProject="src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		
