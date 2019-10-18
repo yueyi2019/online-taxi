@@ -45,8 +45,10 @@ public class GrabServiceImpl implements GrabService {
 //        RLock rLock2 = redissonRed2.getLock(lockKey);
 //        RLock rLock3 = redissonRed2.getLock(lockKey);
 //        RedissonRedLock rLock = new RedissonRedLock(rLock1,rLock2,rLock3);
+
         rLock.lock();
 
+//        rLock.tryLock();
 
         try {
             //通过断点模拟业务执行时间。
