@@ -6,7 +6,7 @@
 
     <script>
         console.info("s")
-        var source = new EventSource('accept/get-data');
+        var source = new EventSource('listen/driver/1');
         source.onmessage = function (evt) {
             console.info("dd")
             console.info(evt.data);
