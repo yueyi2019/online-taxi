@@ -1,4 +1,4 @@
-package com.online.taxi.push.response;
+package com.online.taxi.listen.response;
 
 import lombok.Data;
 
