@@ -15,4 +15,5 @@ public class ServiceOrderDispatchApplication {
 		SpringApplication.run(ServiceOrderDispatchApplication.class, args);
 	}
 
+
 }
