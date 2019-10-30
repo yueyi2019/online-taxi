@@ -3,7 +3,6 @@ package com.online.taxi.common.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
@@ -11,7 +10,9 @@ import java.util.Date;
  * @author yueyi2019
  */
 public class JwtUtil {
-
+    /**
+     * 密钥，仅服务端存储
+     */
     private static String secret = "ko346134h_we]rg3in_yip1!";
 
     /**
@@ -28,6 +29,7 @@ public class JwtUtil {
                 .signWith(io.jsonwebtoken.SignatureAlgorithm.HS512, secret)
                 .compact();
         return compactJws;
+
     }
 
     /**
