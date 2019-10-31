@@ -1,4 +1,4 @@
-package com.online.taxi.jms.provider.service;
+package com.online.taxi.jms.produce.service;
 
 import javax.jms.Destination;
 

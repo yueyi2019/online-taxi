@@ -13,6 +13,8 @@ spring:
     pool:
       enabled: true
       max-connections: 100
+
+
 #注册中心
 eureka: 
 #  server:
