@@ -33,16 +33,22 @@ public class ActiveMQConfig {
     public ActiveMQConnectionFactory connectionFactory() {
         return new ActiveMQConnectionFactory(brokerUrl);
     }
-    
-    //Queue模式连接注入
+
+    /**
+     * Queue模式连接注入
+     */
     @Bean
     public JmsListenerContainerFactory<?> jmsListenerContainerQueue(ActiveMQConnectionFactory connectionFactory){
         DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }
-    
-    //Topic模式连接注入
+
+    /**
+     * Topic模式连接注入
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     public JmsListenerContainerFactory<?> jmsListenerContainerTopic(ActiveMQConnectionFactory connectionFactory){
         DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
