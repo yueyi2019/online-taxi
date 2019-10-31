@@ -24,7 +24,7 @@ public class DispatchOrder {
 
     @GetMapping("/call/{orderId}")
     public ResponseResult callCar(@PathVariable("orderId") int orderId){
-        //测试派给1号司机
+        //测试派给1号司机,选司机的逻辑
         List<Integer> driverList = new ArrayList<Integer>();
         driverList.add(1);
         return dispatchService.dispatch(orderId,driverList);

@@ -53,7 +53,7 @@ public class GrabServiceImpl implements GrabService {
         try {
             //通过断点模拟业务执行时间。
             try {
-                Thread.sleep(50000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -36,17 +36,17 @@ public class RedisConfig {
         config.useSingleServer().setAddress("127.0.0.1:6379").setDatabase(0);
         return Redisson.create(config);
     }
-    @Bean
-    public RedissonClient redissonRed2(){
-        Config config = new Config();
-        config.useSingleServer().setAddress("127.0.0.1:6380").setDatabase(0);
-        return Redisson.create(config);
-    }
-    @Bean
-    public RedissonClient redissonRed3(){
-        Config config = new Config();
-        config.useSingleServer().setAddress("127.0.0.1:6381").setDatabase(0);
-        return Redisson.create(config);
-    }
+//    @Bean
+//    public RedissonClient redissonRed2(){
+//        Config config = new Config();
+//        config.useSingleServer().setAddress("127.0.0.1:6380").setDatabase(0);
+//        return Redisson.create(config);
+//    }
+//    @Bean
+//    public RedissonClient redissonRed3(){
+//        Config config = new Config();
+//        config.useSingleServer().setAddress("127.0.0.1:6381").setDatabase(0);
+//        return Redisson.create(config);
+//    }
     //以上为红锁
 }
