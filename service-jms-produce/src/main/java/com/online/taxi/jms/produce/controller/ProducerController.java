@@ -36,6 +36,7 @@ public class ProducerController {
     public String queueSend(String text) {
         //发送消息至消息中间件代理（Broker）
         jms.convertAndSend(queue, text);
+        
         return "success";
     }
  
