@@ -21,15 +21,19 @@ public class ConsumerQueue {
        try {
            int i = 1/0;
            System.out.println("消費者收到的queue1报文为:"+text.getText());
-            text.acknowledge();
+           //提交完事务后，再确认。
+
+
        }catch (Exception e){
-            session.recover();
+//            session.recover();
            try {
                Thread.sleep(5000);
            } catch (InterruptedException e1) {
                e1.printStackTrace();
            }
            System.out.println("异常了");
+       }finally {
+           text.acknowledge();
        }
 
    }
