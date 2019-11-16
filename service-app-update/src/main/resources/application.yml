@@ -43,7 +43,8 @@ mybatis:
   mapper-locations:             
   - classpath:mybatis/mapper/*.xml  
 
-logging:  level:    root: debug  
+logging:  level:    root: info  
+    com.online.taxi.app.dao: debug
     
 #Admin监控
 management:
