@@ -42,9 +42,9 @@ public class MqClient {
     }
 
     public static void main(String[] args) throws Exception {
-//        MqClient.produce("消息"+1);
-//        MqClient.produce("消息"+2);
-//        MqClient.produce("消息"+3);
+        MqClient.produce("消息"+1);
+        MqClient.produce("消息"+2);
+        MqClient.produce("消息"+3);
 
         System.out.println(MqClient.consumer());
     }

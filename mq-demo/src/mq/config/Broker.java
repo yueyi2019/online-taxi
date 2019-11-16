@@ -22,7 +22,7 @@ public class Broker {
      */
     public static  void produce(String msg){
         /**
-         * 队列未满，插入成功返回true，队列慢，插入失败返回false
+         * 队列未满，插入成功返回true，队列满，插入失败返回false
          */
         if (msgQueue.offer(msg)){
             System.out.println("成功 生产消息："+msg+"当前队列大小："+msgQueue.size());
