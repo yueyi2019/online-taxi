@@ -1,31 +1,32 @@
-#服务端口
 server: 
+    #服务端口
   port: 8002
 
-#应用名称及验证账号
 spring: 
   application: 
+        #应用名称
     name: service-sms
-  datasource: #数据库连接配置
-    #配置当前姚使用的数据源的操作类型
+    #数据库连接配置
+  datasource: 
+         #配置当前使用的数据源的操作类型
     type: com.alibaba.druid.pool.DruidDataSource                          
-    #配置MySQL的驱动程序类
+         #配置MySQL的驱动程序类
     driver-class-name: com.mysql.cj.jdbc.Driver                             
-    #数据库连接地址
+         #数据库连接地址
     url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    #数据库连接用户名
+         #数据库连接用户名
     username: root                                                        
-    #数据库连接密码
+         #数据库连接密码
     password: root                                                        
-    #进行数据库连接池的配置
+         #进行数据库连接池的配置
     dbcp2:          
-      #初始化提供的连接数                                                      
+             #初始化提供的连接数                                                      
       initial-size: 5    
-      #数据库连接池的最小维持连接数                                                 
+             #数据库连接池的最小维持连接数                                                 
       min-idle: 5          
-      #最大的连接数                                               
+             #最大的连接数                                               
       max-total: 5 
-      #等待连接获取的最大超时时间                                                       
+             #等待连接获取的最大超时时间                                                       
       max-wait-millis: 200                                                
       validation-query: SELECT 1
       test-while-idle: true
@@ -44,9 +45,9 @@ spring:
 mybatis:
   #mybatis配置文件所在路径
   config-location: classpath:mybatis/mybatis.cfg.xml 
-  #定义所有操作类的别名所在包
+    #定义所有操作类的别名所在包
   type-aliases-package: com.online.taxi.common
-  #所有的mapper映射文件  
+    #所有的mapper映射文件  
   mapper-locations:             
   - classpath:mybatis/mapper/*.xml  
 
