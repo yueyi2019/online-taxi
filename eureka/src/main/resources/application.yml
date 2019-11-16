@@ -1,6 +1,6 @@
 #服务端口
 server: 
-  port: 7901
+  port: 7900
 
 #应用名称及验证账号
 spring: 
@@ -13,11 +13,10 @@ spring:
 
 #注册中心
 eureka: 
-#  server:
-#    enable-self-preservation: false       #关闭保护机制
-#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
+    #是否将自己注册到Eureka Server,默认为true，由于当前就是server，故而设置成false
     register-with-eureka: false
+    #是否从eureka server获取注册信息，由于单节点，不需要同步其他节点数据，用false
     fetch-registry: false
     #设置服务注册中心的URL
     service-url:                      
