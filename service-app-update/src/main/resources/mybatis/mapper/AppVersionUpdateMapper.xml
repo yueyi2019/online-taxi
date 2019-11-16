@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.taxi.app.dao.AppVersionUpdateMapper" >
+  <resultMap id="BaseResultMap" type="com.online.taxi.common.entity.AppVersionUpdate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="notice_type" property="noticeType" jdbcType="INTEGER" />
+    <result column="prompt" property="prompt" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="download_url" property="downloadUrl" jdbcType="VARCHAR" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="app_type" property="appType" jdbcType="INTEGER" />
+    <result column="app_version" property="appVersion" jdbcType="VARCHAR" />
+    <result column="use_status" property="useStatus" jdbcType="INTEGER" />
+    <result column="version_code" property="versionCode" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, platform_type, notice_type, prompt, note, start_time, end_time, download_url, 
+    operator_id, app_type, app_version, use_status, version_code, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_app_version_update
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.online.taxi.common.entity.AppVersionUpdate" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_app_version_update
+    where platform_type = #{platformType} 
+    and app_type = #{appType} 
+    and version_code > #{versionCode}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_app_version_update
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.online.taxi.common.entity.AppVersionUpdate" >
+    insert into tbl_app_version_update (id, platform_type, notice_type, 
+      prompt, note, start_time, 
+      end_time, download_url, operator_id, 
+      app_type, app_version, use_status, 
+      version_code, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{platformType,jdbcType=INTEGER}, #{noticeType,jdbcType=INTEGER}, 
+      #{prompt,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{downloadUrl,jdbcType=VARCHAR}, #{operatorId,jdbcType=INTEGER}, 
+      #{appType,jdbcType=INTEGER}, #{appVersion,jdbcType=VARCHAR}, #{useStatus,jdbcType=INTEGER}, 
+      #{versionCode,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.online.taxi.common.entity.AppVersionUpdate" >
+    insert into tbl_app_version_update
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="noticeType != null" >
+        notice_type,
+      </if>
+      <if test="prompt != null" >
+        prompt,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="downloadUrl != null" >
+        download_url,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="appVersion != null" >
+        app_version,
+      </if>
+      <if test="useStatus != null" >
+        use_status,
+      </if>
+      <if test="versionCode != null" >
+        version_code,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="noticeType != null" >
+        #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="prompt != null" >
+        #{prompt,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadUrl != null" >
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=INTEGER},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="useStatus != null" >
+        #{useStatus,jdbcType=INTEGER},
+      </if>
+      <if test="versionCode != null" >
+        #{versionCode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.online.taxi.common.entity.AppVersionUpdate" >
+    update tbl_app_version_update
+    <set >
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="noticeType != null" >
+        notice_type = #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="prompt != null" >
+        prompt = #{prompt,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadUrl != null" >
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=INTEGER},
+      </if>
+      <if test="appVersion != null" >
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="useStatus != null" >
+        use_status = #{useStatus,jdbcType=INTEGER},
+      </if>
+      <if test="versionCode != null" >
+        version_code = #{versionCode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.online.taxi.common.entity.AppVersionUpdate" >
+    update tbl_app_version_update
+    set platform_type = #{platformType,jdbcType=INTEGER},
+      notice_type = #{noticeType,jdbcType=INTEGER},
+      prompt = #{prompt,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      app_type = #{appType,jdbcType=INTEGER},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      use_status = #{useStatus,jdbcType=INTEGER},
+      version_code = #{versionCode,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -66,7 +66,14 @@
 		</table>-->
 
 		<!--乘客 信息表-->
-		<table tableName="tbl_passenger_info" domainObjectName="PassengerInfo"
+		<!-- <table tableName="tbl_passenger_info" domainObjectName="PassengerInfo"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table> -->
+		
+		<!-- 版本升级表 -->
+		<table tableName="tbl_app_version_update" domainObjectName="AppVersionUpdate"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
