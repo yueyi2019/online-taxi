@@ -50,7 +50,7 @@ logging:  level:    root: info
 management:
   endpoints:
     web:
-            #将所有的端点对web暴露，因为有jmx和web的区别
+      #将所有的端点对web暴露，因为有jmx和web的区别
       exposure:
         include: "*"
   endpoint:

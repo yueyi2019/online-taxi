@@ -1,7 +1,3 @@
-server: 
-    #服务端口
-  port: 8002
-
 spring: 
   application: 
         #应用名称
@@ -60,14 +56,14 @@ eureka:
   client:
     #设置服务注册中心的URL
     service-url:                      
-      defaultZone: http://root:root@eureka-7901:7901/eureka/
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
   instance: 
+    virtual-host-name: service-sms
     #服务刷新时间配置，每隔这个时间会主动心跳一次
     lease-renewal-interval-in-seconds: 1      
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
     lease-expiration-duration-in-seconds: 1   
-    hostname: localhost
-    instance-id: service-sms
+    
     metadata-map:
       user.name: root
       user.password: root
@@ -81,3 +77,21 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+---
+spring:  profiles: 8002
+server: 
+    #服务端口
+  port: 8002
+eureka:
+  instance:
+    hostname: localhost
+---
+spring:
+  profiles: 8003
+server: 
+    #服务端口
+  port: 8003
+eureka:
+  instance:
+    hostname: localhost
+  

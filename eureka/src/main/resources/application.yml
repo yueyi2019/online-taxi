@@ -1,25 +1,62 @@
-#服务端口
-server: 
-  port: 7900
-
 #应用名称及验证账号
 spring: 
   application: 
     name: eureka
+    
   security: 
     user: 
       name: root
       password: root
-
 #注册中心
 eureka: 
+#  client:
+#         #设置服务注册中心的URL
+#    service-url:                      
+#      defaultZone: http://root:root@eureka-7901:7901/eureka/,http://root:root@eureka-7902:7902/eureka/,http://root:root@eureka-7903:7903/eureka/
+  server:
+    enable-self-preservation: false       #关闭保护机制
+    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
+
+---
+spring:
+  profiles: 7900
+server: 
+  port: 7900
+eureka:
+  instance:
+    hostname: eureka-7900  
   client:
-    #是否将自己注册到Eureka Server,默认为true，由于当前就是server，故而设置成false
-    register-with-eureka: false
-    #是否从eureka server获取注册信息，由于单节点，不需要同步其他节点数据，用false
-    fetch-registry: false
-    #设置服务注册中心的URL
+    register-with-eureka: true
+         #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/    healthcheck:      enabled: true
+---
+spring:  profiles: 7901
+server: 
+  port: 7901
+eureka:  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1    hostname: eureka-7901  
+  client:
+         #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7902:7902/eureka/---    
+spring:
+  profiles: 7902
+server: 
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902  
+  client:
+       #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7901:7901/eureka/
-  instance: 
-    hostname: eureka-7901
+---
+spring:
+  profiles: 7903
+server: 
+  port: 7903
+eureka:
+  instance:
+    hostname: eureka-7903

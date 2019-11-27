@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,11 +27,12 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	
 	@Override
 	public ResponseResult send(String phoneNumber, String code) {
 		System.out.println("手机号和验证码："+phoneNumber+","+code);
-		
-		String url = "http://service-sms/send/alisms-template";
+		String serviceName = "service-sms";
+		String url = "http://"+serviceName+"/send/alisms-template";
 		SmsSendRequest smsSendRequest = new SmsSendRequest();
 		String[] phoneNumbers = new String[] {phoneNumber};
 		smsSendRequest.setReceivers(phoneNumbers);
