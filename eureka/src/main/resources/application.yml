@@ -7,15 +7,6 @@ spring:
     user: 
       name: root
       password: root
-#注册中心
-eureka: 
-#  client:
-#         #设置服务注册中心的URL
-#    service-url:                      
-#      defaultZone: http://root:root@eureka-7901:7901/eureka/,http://root:root@eureka-7902:7902/eureka/,http://root:root@eureka-7903:7903/eureka/
-  server:
-    enable-self-preservation: false       #关闭保护机制
-    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
 
 ---
 spring:
@@ -23,14 +14,14 @@ spring:
 server: 
   port: 7900
 eureka:
-  instance:
-    hostname: eureka-7900  
+  instance:    prefer-ip-address: true
+    ip-address: 192.168.0.103
+    hostname: eureka-7900
   client:
     register-with-eureka: true
-         #设置服务注册中心的URL
+    fetch-registry: true
     service-url:                      
-      defaultZone: http://root:root@eureka-7900:7900/eureka/    healthcheck:      enabled: true
----
+      defaultZone: http://root:root@localhost:7900/eureka/---
 spring:  profiles: 7901
 server: 
   port: 7901
