@@ -29,6 +29,11 @@ eureka:
 #feign:
 #  #开启feignhystrix#  hystrix:#    enabled: true  
 
+#service-sms: 
+#  ribbon: 
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
 ribbon:  eager-load:
     enabled: true    clients:    - SERVICE-SMS
 
