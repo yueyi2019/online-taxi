@@ -18,10 +18,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableFeignClients
 @EnableCircuitBreaker
-@ComponentScan({"com.online.taxi.passenger.controller",
-	"com.online.taxi.passenger.dao",
-	"com.online.taxi.passenger.service",
-	"com.online.taxi.passenger.ribbonconfigscan"})
 public class ApiPassengerApplication {
 
 	public static void main(String[] args) {

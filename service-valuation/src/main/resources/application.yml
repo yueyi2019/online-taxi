@@ -1,36 +1,15 @@
-#服务端口
-server: 
-  port: 8006
-
 #应用名称及验证账号
 spring: 
   application: 
-    name: service-wallet
+    name: service-valuation
 
 #注册中心
 eureka: 
-#  server:
-#    enable-self-preservation: false       #关闭保护机制
-#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7900:7900/eureka/
-  instance: 
-    #服务刷新时间配置，每隔这个时间会主动心跳一次
-    lease-renewal-interval-in-seconds: 1      
-    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
-    lease-expiration-duration-in-seconds: 1   
-    hostname: localhost
-    prefer-ip-address: true
-    #eureka注册中心的url link
-    status-page-url: /actuator/info           
-    #健康检查的url
-    health-check-url-path: /actuator/health   
-    instance-id: service-wallet
-    metadata-map:
-      user.name: root
-      user.password: root
+  
     
 #Admin监控
 management:
@@ -41,3 +20,13 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+      
+---
+spring:  profiles: 8060
+server: 
+  port: 8060
+---
+spring:
+  profiles: 8061
+server: 
+  port: 8061       

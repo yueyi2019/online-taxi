@@ -25,15 +25,22 @@ eureka:
   instance: 
     hostname: localhost
     instance-id: api-passenger
+      
     
-#feign:
+feign:
 #  #开启feignhystrix#  hystrix:#    enabled: true  
-
+  client: 
+    config:  
+      service-sms: 
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: full
+        
 #service-sms: 
 #  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-
-
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRuleservice-valuation: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ribbon:  eager-load:
     enabled: true    clients:    - SERVICE-SMS
 

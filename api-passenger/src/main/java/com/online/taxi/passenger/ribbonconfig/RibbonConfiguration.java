@@ -11,7 +11,6 @@ import com.netflix.loadbalancer.RandomRule;
  * @author yueyi2019
  *
  */
-@Configuration
 public class RibbonConfiguration {
 
 	@Bean
