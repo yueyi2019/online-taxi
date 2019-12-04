@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ser.std.MapSerializer;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.order.ForecastRequest;
 import com.online.taxi.common.dto.order.ForecastResponse;
@@ -38,4 +39,5 @@ public class ForecastController {
 		return ResponseResult.success(response);
 		
 	}
+	
 }
