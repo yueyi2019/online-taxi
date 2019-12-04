@@ -15,7 +15,7 @@ import com.online.taxi.passenger.feign.config.FeignAuthConfiguration;
  * @author yueyi2019
  *
  */
-@FeignClient(name = "service-valuation",configuration = FeignAuthConfiguration.class)
+@FeignClient(name = "service-valuation")
 public interface ServiceForecast {
 	
 	@RequestMapping(value = "/forecast/single",method = RequestMethod.POST)

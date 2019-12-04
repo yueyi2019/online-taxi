@@ -31,7 +31,9 @@ feign:
 #  #开启feignhystrix#  hystrix:#    enabled: true  
   client: 
     config:  
-      service-sms: 
+      service-valuation: 
+      
+        request-interceptors:        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
         connect-timeout: 5000
         read-timeout: 5000
         logger-level: full
