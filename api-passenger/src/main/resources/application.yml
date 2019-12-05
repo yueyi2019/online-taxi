@@ -36,7 +36,7 @@ feign:
         request-interceptors:        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
         connect-timeout: 5000
         read-timeout: 5000
-        logger-level: full
+        logger-level: basic
         
 #service-sms: 
 #  ribbon: 
@@ -59,3 +59,4 @@ management:
       enabled: true
           
 logging:  level:    org.springframework: DEBUG
+    com.online.taxi.passenger.feign.ServiceForecast: debug
