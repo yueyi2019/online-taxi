@@ -12,6 +12,7 @@ spring:
 #注册中心
 eureka: 
   client:
+    healthcheck:      enabled: true
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@localhost:7900/eureka/
@@ -23,7 +24,7 @@ eureka:
     hostname: localhost
     #true表示，将自己的ip注册到Eureka Server上，不配置或false表示将所在操作系统hostname注册到eureka server上。
     prefer-ip-address: true
-    instance-id: service-wallet
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server:port}
     metadata-map:
       user.name: root
       user.password: root

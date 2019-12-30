@@ -7,7 +7,15 @@ spring:
     user: 
       name: root
       password: root
-
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server: 
+    #关闭自我保护
+    enable-self-preservation: false
+    #清理间隔时间
+    eviction-interval-timer-in-ms: 5000
 ---
 spring:
   profiles: 7900
@@ -18,8 +26,6 @@ eureka:
     ip-address: 192.168.0.103
     hostname: eureka-7900
   client:
-    register-with-eureka: true
-    fetch-registry: true
     service-url:                      
       defaultZone: http://root:root@localhost:7900/eureka/---
 spring:  profiles: 7901
@@ -29,7 +35,7 @@ eureka:  instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1    hostname: eureka-7901  
   client:
-         #设置服务注册中心的URL
+    #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7902:7902/eureka/---    
 spring:
