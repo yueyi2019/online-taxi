@@ -1,0 +1,34 @@
+#高可用2个节点
+#应用名称及验证账号
+spring: 
+  application: 
+    name: eureka
+    
+  security: 
+    user: 
+      name: root
+      password: root
+
+logging:  level:    root: debug
+    ---
+spring:  profiles: 7901
+server: 
+  port: 7901
+eureka:  instance:
+    hostname: eureka-7901  
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7902:7902/eureka/---    
+spring:
+  profiles: 7902
+server: 
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902  
+  client:
+       #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7901:7901/eureka/
+

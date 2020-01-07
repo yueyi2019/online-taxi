@@ -1,6 +1,7 @@
 package com.online.taxi.verificationcode.controller;
 
 import com.netflix.discovery.converters.Auto;
+import com.online.taxi.verificationcode.component.GitConfig;
 import com.online.taxi.verificationcode.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,14 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/config")
 public class ConfigController {
 
-	@Value("${env}")
-	private String env;
+	@Autowired
+	private GitConfig gitConfig;
 
 	@Autowired
 	private ConfigService configService;
 
-	@GetMapping("/env1")
+	@GetMapping("/env")
 	public String env() {
+		return gitConfig.getEnv();
+	}
+	
+	@GetMapping("/env1")
+	public String env1() {
 
 		return configService.getEnv1();
 	}

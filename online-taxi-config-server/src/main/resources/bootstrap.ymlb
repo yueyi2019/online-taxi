@@ -8,6 +8,7 @@ spring:
     name: config-server
     
   cloud:
+    
     config:
       server:
         git:
@@ -17,20 +18,4 @@ spring:
           password: 
           #默认是秒，因为git慢
           timeout: 15
-    
-#注册中心
-eureka: 
-  client:
-    #设置服务注册中心的URL
-    service-url:                      
-      defaultZone: http://root:root@eureka-7900:7900/eureka/
-  instance: 
-    hostname: localhost
-    instance-id: config-server
-
-management:
-  endpoints:
-    web:
-      exposure:
-        #yml加双引号，properties不用加
-        include: "*"
+              

@@ -31,4 +31,4 @@ eureka:
 management:  endpoints:    web:      exposure:
         #yml加双引号，properties不用加        include: "*"
         
-#env: code
+env: code

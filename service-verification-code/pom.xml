@@ -51,10 +51,10 @@
 		</dependency>
 		
 		<!-- 配置中心客户端：config-client -->
-		 <!--<dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-client</artifactId>
-		</dependency>-->
+		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
