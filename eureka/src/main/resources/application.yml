@@ -17,16 +17,16 @@ eureka:
     enable-self-preservation: false
     #清理间隔时间
     eviction-interval-timer-in-ms: 5000
-logging:  level:    root: debug
+logging:  level:    root: info
 ---
 spring:
   profiles: 7900
 server: 
   port: 7900
 eureka:
-  instance:    prefer-ip-address: true
-    ip-address: 192.168.0.103
+  instance:#    prefer-ip-address: true
+#    ip-address: 192.168.0.103
     hostname: eureka-7900
-#  client:
-#    service-url:                      
-#      defaultZone: http://root:root@localhost:7900/eureka/
+  client:
+    service-url:                      
+      defaultZone: http://root:root@localhost:7900/eureka/
