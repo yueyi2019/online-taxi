@@ -24,7 +24,7 @@ public class ApiPassengerApplication {
 		SpringApplication.run(ApiPassengerApplication.class, args);
 	}
 	
-
+	
 	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate() {
