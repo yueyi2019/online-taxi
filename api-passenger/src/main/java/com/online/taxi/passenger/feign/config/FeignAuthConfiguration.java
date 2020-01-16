@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import feign.auth.BasicAuthRequestInterceptor;
-@Configuration
+//@Configuration
 public class FeignAuthConfiguration {
 	
 	@Bean

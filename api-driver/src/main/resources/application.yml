@@ -1,11 +1,11 @@
 #服务端口
 server: 
-  port: 9001
+  port: 9002
 
 #应用名称及验证账号
 spring: 
   application: 
-    name: api-passenger    admin:      enabled: true
+    name: api-driver    admin:      enabled: true
   redis:    database: 0
     host: 127.0.0.1
     port: 6379
@@ -24,22 +24,8 @@ eureka:
       defaultZone: http://root:root@eureka-7900:7900/eureka/
   instance: 
     hostname: localhost
-    instance-id: api-passenger
       
     
-feign:
-  compression:    request:      mime-types:      - text/xml
-      min-request-size: 2048
-#  #开启feignhystrix#  hystrix:#    enabled: true  
-
-  client: 
-    config:  
-      service-valuation: 
-        
-        request-interceptors:        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
-        connect-timeout: 5000
-        read-timeout: 5000
-        logger-level: basic
         
 #service-sms: 
 #  ribbon: 
@@ -62,4 +48,3 @@ management:
       enabled: true
           
 logging:  level:    org.springframework: DEBUG
-    com.online.taxi.passenger.feign.ServiceForecast: debug

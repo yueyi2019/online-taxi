@@ -2,10 +2,10 @@
 spring: 
   application: 
     name: service-valuation
-#  security: 
-#    user: 
-#      name: root
-#      password: root  profiles:    active:    - 8060
+  security: 
+    user: 
+      name: root
+      password: root  profiles:    active:    - 8060
 
 #注册中心
 eureka: 

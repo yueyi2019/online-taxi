@@ -1,12 +1,10 @@
-package com.online.taxi.passenger.service.impl;
+package com.online.taxi.driver.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,8 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.sms.SmsSendRequest;
 import com.online.taxi.common.dto.sms.SmsTemplateDto;
-import com.online.taxi.passenger.service.ShortMsgService;
-import com.online.taxi.passenger.service.SmsClient;
+import com.online.taxi.driver.service.ShortMsgService;
 
 import net.sf.json.JSONObject;
 /**
@@ -26,9 +23,6 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	@Autowired
-	private SmsClient smsClient;
 	
 	@Override
 	public ResponseResult send(String phoneNumber, String code) {
@@ -51,11 +45,9 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		smsSendRequest.setData(data);
 		
 		//ribbon调用
-//		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-//		ResponseResult result = resultEntity.getBody();
+		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+		ResponseResult result = resultEntity.getBody();
 		
-		//feign调用
-		ResponseResult result = smsClient.sendSms(smsSendRequest);
 		
 		System.out.println("调用短信服务返回的结果"+JSONObject.fromObject(result));
 		return result;

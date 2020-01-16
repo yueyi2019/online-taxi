@@ -1,4 +1,4 @@
-package com.online.taxi.passenger.ribbonconfig;
+package com.online.taxi.driver.ribbonconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
