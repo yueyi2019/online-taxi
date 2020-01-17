@@ -29,9 +29,9 @@ eureka:
         
 #service-sms: 
 #  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRuleservice-valuation: 
-  ribbon: 
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule#service-valuation: 
+#  ribbon: 
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ribbon:  eager-load:
     enabled: true    clients:    - SERVICE-SMS
 
@@ -47,4 +47,4 @@ management:
       show-details: ALWAYS
       enabled: true
           
-logging:  level:    org.springframework: DEBUG
+logging:  level:    org.springframework: info

@@ -41,9 +41,9 @@ feign:
         read-timeout: 5000
         logger-level: basic
         
-#service-sms: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRuleservice-valuation: 
+service-sms: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRuleservice-valuation: 
   ribbon: 
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ribbon:  eager-load:
