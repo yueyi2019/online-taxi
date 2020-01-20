@@ -3,7 +3,6 @@
 spring: 
   application: 
     name: eureka
-    
   security: 
     user: 
       name: root
@@ -24,9 +23,6 @@ spring:
 server: 
   port: 7900
 eureka:
-  instance:#    prefer-ip-address: true
-#    ip-address: 192.168.0.103
-    hostname: eureka-7900
   client:
     service-url:                      
-      defaultZone: http://root:root@localhost:7900/eureka/
+      defaultZone: http://root:root@localhost:7900/eureka/

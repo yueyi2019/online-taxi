@@ -54,6 +54,7 @@ eureka:
 #    enable-self-preservation: false       #关闭保护机制
 #    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
+    healthcheck:      enabled: true
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7900:7900/eureka/
@@ -82,16 +83,12 @@ spring:  profiles: 8002
 server: 
     #服务端口
   port: 8002
-eureka:
-  instance:
-    hostname: localhost
+
 ---
 spring:
   profiles: 8003
 server: 
     #服务端口
   port: 8003
-eureka:
-  instance:
-    hostname: localhost
+
   

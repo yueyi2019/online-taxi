@@ -26,14 +26,23 @@ eureka:
     hostname: localhost
       
     
-        
+##手写ribbon        
 #service-sms: 
 #  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule#service-valuation: 
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    eureka: 
+#      enable: false
+#    listOfServers: localhost:8002,localhost:8003
+
+service-sms: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    #service-valuation: 
 #  ribbon: 
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
 ribbon:  eager-load:
-    enabled: true    clients:    - SERVICE-SMS
+    enabled: true    clients:    - SERVICE-SMS  
 
 #Admin监控
 management:
