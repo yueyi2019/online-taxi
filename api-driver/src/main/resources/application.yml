@@ -42,7 +42,8 @@ service-sms:
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 ribbon:  eager-load:
-    enabled: true    clients:    - SERVICE-SMS  
+    enabled: true    clients:    - SERVICE-SMS#  http:#    client:#      enabled: false  
+#  okhttp:#    enabled: false   
 
 #Admin监控
 management:

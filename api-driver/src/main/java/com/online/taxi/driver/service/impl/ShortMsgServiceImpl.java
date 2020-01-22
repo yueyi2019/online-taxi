@@ -54,14 +54,14 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		smsSendRequest.setData(data);
 		
 		//手写 ribbon调用
-		ServiceInstance instance = loadBalance(serviceName);
-		url = http + instance.getHost()+":"+instance.getPort()+uri;
-		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-		ResponseResult result = resultEntity.getBody();
-		
-		//正常 ribbon调用
+//		ServiceInstance instance = loadBalance(serviceName);
+//		url = http + instance.getHost()+":"+instance.getPort()+uri;
 //		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
 //		ResponseResult result = resultEntity.getBody();
+		
+		// 正常 ribbon调用
+		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
+		ResponseResult result = resultEntity.getBody();
 		
 		
 		System.out.println("调用短信服务返回的结果"+JSONObject.fromObject(result));

@@ -25,9 +25,6 @@ import net.sf.json.JSONObject;
 public class ShortMsgServiceImpl implements ShortMsgService {
 	
 	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired
 	private SmsClient smsClient;
 	
 	@Override
@@ -49,10 +46,6 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		data.add(dto);
 		
 		smsSendRequest.setData(data);
-		
-		//ribbon调用
-//		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-//		ResponseResult result = resultEntity.getBody();
 		
 		//feign调用
 		ResponseResult result = smsClient.sendSms(smsSendRequest);

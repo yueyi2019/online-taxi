@@ -52,7 +52,7 @@ public class SmsController {
 		//获取验证码-正常代码
 //		String code = verificationCodeService.getCode(phoneNumber);
 		String code = "010101";
-		log.info("service-verification-code 返回的验证码："+code);
+		log.info("service-verification-code 返回的验证码：{}",code);
 		shortMsgService.send(phoneNumber, code);
 		
 		return ResponseResult.success(null);
