@@ -16,6 +16,8 @@ import com.online.taxi.common.constant.CommonStatusEnum;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.util.PhoneUtil;
 import com.online.taxi.driver.dto.ShortMsgRequest;
+import com.online.taxi.driver.exception.BusinessException;
+import com.online.taxi.driver.exception.HystrixIgnoreException;
 import com.online.taxi.driver.service.ShortMsgService;
 import com.online.taxi.driver.service.VerificationCodeService;
 /**
@@ -39,9 +41,19 @@ public class SmsController {
 	 *
 	 * //	@HystrixCommand(fallbackMethod = "sendFail")
 	 */
-	@HystrixCommand(fallbackMethod = "sendFail")
+	@HystrixCommand(fallbackMethod = "sendFail",ignoreExceptions = {HystrixIgnoreException.class})
 	@PostMapping("/verify-code/send")
 	public ResponseResult verifyCodeSend(@RequestBody ShortMsgRequest shortMsgRequest) {
+		
+		// 下面是故意跑出异常代码
+//		try {
+//			int i = 1/0;
+//		} catch (Exception e) {
+//			// TODO: handle exception
+////			throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
+//			throw new HystrixIgnoreException("熔断忽略的异常，忽略属性设置");
+//		}
+		
 		String phoneNumber = shortMsgRequest.getPhoneNumber();
 		//校验手机号
 		if(StringUtils.isBlank(phoneNumber)) {
@@ -57,10 +69,12 @@ public class SmsController {
 		log.info("service-verification-code 返回的验证码：{}",code);
 		shortMsgService.send(phoneNumber, code);
 		
+		
 		return ResponseResult.success(null);
 	}
 	
-	public ResponseResult sendFail(ShortMsgRequest shortMsgRequest) {
+	public ResponseResult sendFail(ShortMsgRequest shortMsgRequest,Throwable throwable) {
+		log.info("异常信息："+throwable);
 		//备用逻辑
 		return ResponseResult.fail(-1, "熔断");
 	}
