@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.online.taxi.common.constant.CommonStatusEnum;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.util.PhoneUtil;
@@ -38,6 +39,7 @@ public class SmsController {
 	 *
 	 * //	@HystrixCommand(fallbackMethod = "sendFail")
 	 */
+	@HystrixCommand(fallbackMethod = "sendFail")
 	@PostMapping("/verify-code/send")
 	public ResponseResult verifyCodeSend(@RequestBody ShortMsgRequest shortMsgRequest) {
 		String phoneNumber = shortMsgRequest.getPhoneNumber();

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.order.ForecastRequest;
 import com.online.taxi.common.dto.order.ForecastResponse;
+import com.online.taxi.passenger.annotation.ExcudeFeignConfig;
 import com.online.taxi.passenger.feign.config.FeignAuthConfiguration;
 
 /**
@@ -15,6 +16,7 @@ import com.online.taxi.passenger.feign.config.FeignAuthConfiguration;
  * @author yueyi2019
  *
  */
+//@FeignClient(name = "service-valuation",configuration = FeignAuthConfiguration.class)
 @FeignClient(name = "service-valuation")
 public interface ServiceForecast {
 	
