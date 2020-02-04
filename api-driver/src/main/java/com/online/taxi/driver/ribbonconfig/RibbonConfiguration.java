@@ -1,8 +1,10 @@
 package com.online.taxi.driver.ribbonconfig;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.IRule;
@@ -15,13 +17,31 @@ import com.online.taxi.driver.annotation.ExcudeRibbonConfig;
  *
  */
 @Configuration
-@ExcudeRibbonConfig
+//@ExcudeRibbonConfig
 public class RibbonConfiguration {
 
 	@Bean
-	public IRule ribbonRule() {
-		return new RandomRule();
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 	
+	/**
+	 * 修改IRule
+	 * @return
+	 */
+//	@Bean
+//	public IRule ribbonRule() {
+//		return new RandomRule();
+//	}
+	
+	/**
+	 * 自定义rule
+	 * @return
+	 */
+	@Bean
+	public IRule ribbonRule() {
+		return new MsbRandomRule();
+	}
 	
 }

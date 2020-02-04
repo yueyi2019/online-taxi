@@ -32,6 +32,7 @@ eureka:
       user.name: root
       user.password: root
       yueyi: 2019
+      a: b
     
 #Admin监控
 management:

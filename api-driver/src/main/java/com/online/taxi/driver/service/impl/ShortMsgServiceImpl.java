@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,7 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		smsSendRequest.setData(data);
 		
 		//手写 ribbon调用
+//		url = "";
 //		ServiceInstance instance = loadBalance(serviceName);
 //		url = http + instance.getHost()+":"+instance.getPort()+uri;
 //		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
