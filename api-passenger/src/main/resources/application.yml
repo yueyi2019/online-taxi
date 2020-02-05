@@ -30,7 +30,7 @@ eureka:
 feign:
   compression:    request:      mime-types:      - text/xml
       min-request-size: 2048
-#  #开启feignhystrix#  hystrix:#    enabled: true  
+  #开启feignhystrix  hystrix:    enabled: true  
 
   client: 
     config:  

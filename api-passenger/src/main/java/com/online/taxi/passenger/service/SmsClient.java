@@ -11,8 +11,8 @@ import com.online.taxi.passenger.fallback.SmsClientFallback;
 /**
  * @author yueyi2019
  */
-//@FeignClient(name = "service-sms",fallback = SmsClientFallback.class)
-@FeignClient(name = "service-sms")
+@FeignClient(name = "service-sms",fallback = SmsClientFallback.class)
+//@FeignClient(name = "service-sms")
 public interface SmsClient {
 	/**
 	 * 按照短信模板发送验证码
