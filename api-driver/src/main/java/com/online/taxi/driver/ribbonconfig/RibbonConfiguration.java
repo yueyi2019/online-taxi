@@ -17,14 +17,9 @@ import com.online.taxi.driver.annotation.ExcudeRibbonConfig;
  *
  */
 @Configuration
-//@ExcudeRibbonConfig
+@ExcudeRibbonConfig
 public class RibbonConfiguration {
 
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 	
 	/**
 	 * 修改IRule
@@ -39,9 +34,9 @@ public class RibbonConfiguration {
 	 * 自定义rule
 	 * @return
 	 */
-	@Bean
-	public IRule ribbonRule() {
-		return new MsbRandomRule();
-	}
+//	@Bean
+//	public IRule ribbonRule() {
+//		return new MsbRandomRule();
+//	}
 	
 }

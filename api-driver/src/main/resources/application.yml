@@ -34,10 +34,12 @@ eureka:
 #      enable: false
 #    listOfServers: localhost:8002,localhost:8003
 
-##正常ribbon
-#service-sms: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#正常ribbon
+SERVICE-SMS:  
+  ribbon:  
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    # 自定义负载策略
+#    NFLoadBalancerRuleClassName: com.online.taxi.driver.ribbonconfig.MsbRandomRule
     #service-valuation: 
 #  ribbon: 
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
@@ -58,5 +60,4 @@ management:
       show-details: ALWAYS
       enabled: true
           
-logging:  level:    org.springframework: info
-    
+logging:  level:    org.springframework: info    
