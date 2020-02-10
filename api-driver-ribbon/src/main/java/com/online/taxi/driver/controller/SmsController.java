@@ -1,25 +1,26 @@
 package com.online.taxi.driver.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.websocket.server.PathParam;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.online.taxi.common.constant.CommonStatusEnum;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.util.PhoneUtil;
 import com.online.taxi.driver.dto.ShortMsgRequest;
-import com.online.taxi.driver.exception.BusinessException;
-import com.online.taxi.driver.exception.HystrixIgnoreException;
 import com.online.taxi.driver.service.ShortMsgService;
 import com.online.taxi.driver.service.VerificationCodeService;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * @author yueyi2019
  */
@@ -41,18 +42,8 @@ public class SmsController {
 	 *
 	 * //	@HystrixCommand(fallbackMethod = "sendFail")
 	 */
-	@HystrixCommand(fallbackMethod = "sendFail",ignoreExceptions = {HystrixIgnoreException.class})
 	@PostMapping("/verify-code/send")
 	public ResponseResult verifyCodeSend(@RequestBody ShortMsgRequest shortMsgRequest) {
-		
-//		// 下面是故意跑出异常代码
-//		try {
-//			int i = 1/0;
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
-////			throw new HystrixIgnoreException("熔断忽略的异常，忽略属性设置");
-//		}
 		
 		String phoneNumber = shortMsgRequest.getPhoneNumber();
 		//校验手机号
@@ -73,20 +64,17 @@ public class SmsController {
 		return ResponseResult.success(null);
 	}
 	
-	public ResponseResult sendFail(ShortMsgRequest shortMsgRequest,Throwable throwable) {
-		log.info("异常信息："+throwable);
-		//备用逻辑
-		return ResponseResult.fail(-1, "熔断");
-	}
 	
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	
-	@GetMapping("/choseServiceName")
-	public ResponseResult choseServiceName() {
-		String serviceName = "service-sms";
+	@GetMapping("/choseServiceName/{serviceName}")
+	public ResponseResult choseServiceName(@PathVariable("serviceName") String serviceName) {
+//		String serviceName = "service-sms";
+		
+//		String serviceName = "service-valuation";
 		ServiceInstance si = loadBalancerClient.choose(serviceName);
-		System.out.println("sms节点信息：url:"+si.getHost()+",port:"+si.getPort());
+		System.out.println(serviceName+"节点信息：url:"+si.getHost()+",port:"+si.getPort());
 		
 		return ResponseResult.success("");
 	}

@@ -20,12 +20,6 @@ import com.online.taxi.driver.annotation.ExcudeRibbonConfig;
 @ExcudeRibbonConfig
 public class RibbonConfiguration {
 
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
 	/**
 	 * 修改IRule
 	 * @return

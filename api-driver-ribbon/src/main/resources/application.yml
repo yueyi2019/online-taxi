@@ -39,10 +39,10 @@ eureka:
 #      enable: false
 #    listOfServers: localhost:8004,localhost:8005
 
-#正常ribbon
-#SERVICE-SMS:  
-#  ribbon:  
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#正常ribbon，单独配置service-sms的负载均衡策略
+service-sms:  
+  ribbon:  
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
     # 自定义负载策略
 #    NFLoadBalancerRuleClassName: com.online.taxi.driver.ribbonconfig.MsbRandomRule
     
@@ -50,7 +50,7 @@ eureka:
 #  ribbon: 
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
-ribbon:
+ribbon: 
   eager-load:
     enabled: true
     clients:

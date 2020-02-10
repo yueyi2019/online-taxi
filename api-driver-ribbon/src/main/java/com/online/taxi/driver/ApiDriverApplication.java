@@ -13,6 +13,8 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
 import com.online.taxi.driver.annotation.ExcudeRibbonConfig;
 import com.online.taxi.driver.ribbonconfig.RibbonConfiguration;
 
@@ -21,14 +23,12 @@ import com.online.taxi.driver.ribbonconfig.RibbonConfiguration;
  */
 
 @SpringBootApplication
-//@EnableCircuitBreaker
-//@EnableHystrix
 @ComponentScan(excludeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION,value=ExcudeRibbonConfig.class)
 })
 // 下面是让所有client都实现随机策略
 //@RibbonClients(defaultConfiguration = RibbonConfiguration.class)
-@RibbonClient(name = "service-sms",configuration = RibbonConfiguration.class)
+//@RibbonClient(name = "service-sms",configuration = RibbonConfiguration.class)
 public class ApiDriverApplication {
 
 	public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class ApiDriverApplication {
 	
 	@Bean
 	@LoadBalanced
-	public RestTemplate restTemplate1() {
+	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
 	
