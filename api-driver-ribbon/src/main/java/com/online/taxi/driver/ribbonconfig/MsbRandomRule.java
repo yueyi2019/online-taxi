@@ -33,7 +33,7 @@ public class MsbRandomRule extends AbstractLoadBalancerRule{
 			for (int i = 0; i < upList.size(); i++) {
 				server = upList.get(i);
 				String port = server.getHostPort();
-				if(port.endsWith("2")) {
+				if(port.endsWith("2") || port.endsWith("0")) {
 					break;
 				}
 				
