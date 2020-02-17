@@ -14,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.dto.sms.SmsSendRequest;
 import com.online.taxi.common.dto.sms.SmsTemplateDto;
+import com.online.taxi.passenger.feign.SmsClient;
 import com.online.taxi.passenger.service.ShortMsgService;
-import com.online.taxi.passenger.service.SmsClient;
 
 import net.sf.json.JSONObject;
 /**

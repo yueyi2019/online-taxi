@@ -14,7 +14,7 @@ import com.online.taxi.passenger.feign.config.FeignAuthConfiguration;
 /**
  * 
  * @author yueyi2019
- *
+ * http://service-valuation/forecast/single
  */
 //@FeignClient(name = "service-valuation",configuration = FeignAuthConfiguration.class)
 @FeignClient(name = "service-valuation")

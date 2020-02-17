@@ -21,7 +21,7 @@ import com.online.taxi.driver.ribbonconfig.RibbonConfiguration;
  */
 
 @SpringBootApplication
-//@EnableCircuitBreaker
+@EnableCircuitBreaker
 //@EnableHystrix
 @ComponentScan(excludeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION,value=ExcudeRibbonConfig.class)

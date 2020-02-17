@@ -20,6 +20,7 @@ import com.online.taxi.common.dto.sms.SmsTemplateDto;
 import com.online.taxi.driver.dto.ShortMsgRequest;
 import com.online.taxi.driver.exception.BusinessException;
 import com.online.taxi.driver.exception.HystrixIgnoreException;
+import com.online.taxi.driver.service.RestTemplateRequestService;
 import com.online.taxi.driver.service.ShortMsgService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,21 +33,10 @@ import net.sf.json.JSONObject;
 public class ShortMsgServiceImpl implements ShortMsgService {
 	
 	@Autowired
-	private RestTemplate restTemplate;
+	private RestTemplateRequestService restTemplateRequestService; 
 	
 	@Override
-	//比较好的Hystrix写在此处,我们为了演示方便，写在controller
-//	@HystrixCommand(fallbackMethod = "sendFail")
 	public ResponseResult send(String phoneNumber, String code) {
-		
-		// 下面是故意跑出异常代码
-//		try {
-//			int i = 1/0;
-//		} catch (Exception e) {
-//			// TODO: handle exception
-////			throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
-//			throw new HystrixIgnoreException("熔断忽略的异常，忽略属性设置");
-//		}
 		
 		System.out.println("手机号和验证码："+phoneNumber+","+code);
 		String http = "http://";
@@ -69,36 +59,11 @@ public class ShortMsgServiceImpl implements ShortMsgService {
 		
 		smsSendRequest.setData(data);
 		
-		//手写 ribbon调用
-//		url = "";
-//		ServiceInstance instance = loadBalance(serviceName);
-//		url = http + instance.getHost()+":"+instance.getPort()+uri;
-//		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-//		ResponseResult result = resultEntity.getBody();
-		
 //		 正常 ribbon调用
-		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-		ResponseResult result = resultEntity.getBody();
-		
-		// 熔断restTemplate调用
-//		ResponseResult result = sendAlismsTemplateWithRestTemplate(url , smsSendRequest);
-		
+		ResponseResult result =  restTemplateRequestService.smsSend(smsSendRequest);
 		
 		System.out.println("调用短信服务返回的结果"+JSONObject.fromObject(result));
 		return result;
-	}
-	
-	public ResponseResult sendAlismsTemplateWithRestTemplate(String url , SmsSendRequest smsSendRequest) {
-		
-		ResponseEntity<ResponseResult> resultEntity = restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class);
-		ResponseResult result = resultEntity.getBody();
-		return result;
-	}
-	
-	private ResponseResult sendFail(String phoneNumber, String code ,Throwable throwable) {
-		log.info("异常信息："+throwable);
-		//备用逻辑
-		return ResponseResult.fail(-1, "熔断");
 	}
 	
 	/*

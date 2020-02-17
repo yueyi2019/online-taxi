@@ -36,7 +36,6 @@ public class SmsController {
 	 * @param shortMsgRequest
 	 * @return
 	 *
-	 * //	@HystrixCommand(fallbackMethod = "sendFail")
 	 */
 	@PostMapping("/verify-code/send")
 	public ResponseResult verifyCodeSend(@RequestBody ShortMsgRequest shortMsgRequest) {
@@ -53,15 +52,10 @@ public class SmsController {
 //		String code = verificationCodeService.getCode(phoneNumber);
 		String code = "010101";
 		log.info("service-verification-code 返回的验证码："+code);
-		shortMsgService.send(phoneNumber, code);
+		return shortMsgService.send(phoneNumber, code);
 		
-		return ResponseResult.success(null);
 	}
 	
-	public ResponseResult sendFail(ShortMsgRequest shortMsgRequest) {
-		//备用逻辑
-		return ResponseResult.fail(-1, "熔断");
-	}
 	
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;

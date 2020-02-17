@@ -32,9 +32,9 @@ eureka:
       
     
 #手写ribbon        
-#service-sms: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+service-sms: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 #    eureka: 
 #      enable: false
 #    listOfServers: localhost:8004,localhost:8005

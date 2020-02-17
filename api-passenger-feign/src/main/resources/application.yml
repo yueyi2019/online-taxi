@@ -39,13 +39,13 @@ feign:
         request-interceptors:        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
         connect-timeout: 5000
         read-timeout: 5000
-        logger-level: full
+        logger-level: none
         
 #service-sms: 
 #  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRuleservice-valuation: 
-  ribbon: 
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule#service-valuation: 
+#  ribbon: 
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ribbon:  eager-load:
     enabled: true    clients:    - SERVICE-SMS
 

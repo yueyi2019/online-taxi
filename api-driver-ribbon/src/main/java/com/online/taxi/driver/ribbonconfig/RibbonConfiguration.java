@@ -24,18 +24,18 @@ public class RibbonConfiguration {
 	 * 修改IRule
 	 * @return
 	 */
-	@Bean
-	public IRule ribbonRule() {
-		return new RandomRule();
-	}
+//	@Bean
+//	public IRule ribbonRule() {
+//		return new RandomRule();
+//	}
 	
 	/**
 	 * 自定义rule
 	 * @return
 	 */
-//	@Bean
-//	public IRule ribbonRule() {
-//		return new MsbRandomRule();
-//	}
+	@Bean
+	public IRule ribbonRule() {
+		return new MsbRandomRule();
+	}
 	
 }

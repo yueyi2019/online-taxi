@@ -19,7 +19,6 @@ import com.online.taxi.passenger.feign.config.FeignAuthConfiguration;
 @FeignClient(name = "service-valuation-without-eureka",url = "http://localhost:8060",configuration = FeignAuthConfiguration.class)
 public interface ServiceForecastWithoutEureka {
 	
-	
 	@RequestMapping(value = "/forecast/single",method = RequestMethod.POST)
 	public ResponseResult<ForecastResponse> forecast(@RequestBody ForecastRequest forecastRequest);
 	
