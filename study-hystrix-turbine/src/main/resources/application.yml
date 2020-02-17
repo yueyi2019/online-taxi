@@ -1,0 +1,13 @@
+server: 
+  port: 6102
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
+  instance: 
+    hostname: localhost  
+turbine:
+  app-config: api-driver,api-passenger
+  cluster-name-expression: "'default'"
