@@ -25,7 +25,8 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 //	@HystrixCommand(fallbackMethod = "sendFail")
 	@HystrixCommand(fallbackMethod = "sendFail",ignoreExceptions = {HystrixIgnoreException.class},
 	commandProperties = {
-			@HystrixProperty(name = "fallback.enabled",value = "true")
+			@HystrixProperty(name = "fallback.enabled",value = "true"),
+			@HystrixProperty(name = "circuitBreaker.forceOpen",value = "false")
 			
 	})
 	public ResponseResult smsSend(SmsSendRequest smsSendRequest) {
@@ -46,7 +47,7 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 	private ResponseResult sendFail(SmsSendRequest smsSendRequest ,Throwable throwable) {
 		log.info("异常信息："+throwable);
 		//备用逻辑
-		return ResponseResult.fail(-3, "熔断");
+		return ResponseResult.fail(-3, "resttemplate熔断");
 	}
 
 }
