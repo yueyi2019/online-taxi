@@ -1,0 +1,42 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: online-taxi-gateway
+    
+  #zipkin
+  zipkin:
+    base-url: http://localhost:9411/
+    #采样比例1，百分之八采样
+  sleuth:
+    sampler:
+      rate: 1 
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
+  instance: 
+    hostname: localhost
+    instance-id: online-taxi-gateway 
+
+
+#网关
+#/**匹配后面所有路径
+zuul:
+  routes:
+    service-sms: /gate-way/sms/**
+    #忽略
+#  ignored-services:
+#  - api-passenger
+  
+#  ignored-patterns:
+#  - /*-passenger/**
+
+  #以下配置为空表示：所有请求头都透传到后面微服务。
+  sensitive-headers:
+logging:
+  level:
+    org.springframework: DEBUG
