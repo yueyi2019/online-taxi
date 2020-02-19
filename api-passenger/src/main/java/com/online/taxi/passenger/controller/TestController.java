@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.eureka.CloudEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,14 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+	
+	@Value("${server.port}")
+	String port;
+	
+	@RequestMapping("/hello")
+	public String hello() {
+		return "api-passenger-hello:"+port;
+	}
 
 	/**
 	 * 注意是 org.springframework.cloud.client.discovery.DiscoveryClient;不是
@@ -53,11 +62,6 @@ public class TestController {
 		result.put("api-passenger", "乘客api接口服务");
 		
 		return ResponseResult.success(result);
-	}
-	
-	@GetMapping("/hello")
-	public String helloWorld() {
-		return "hello";
 	}
 	
 	
