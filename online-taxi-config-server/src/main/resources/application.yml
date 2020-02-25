@@ -15,9 +15,13 @@ spring:
           uri: https://github.com/yueyi2019/online-taxi-config-profile
           username: 
           password: 
-          #默认是秒，因为git慢
+                      #默认是秒，因为git慢
           timeout: 15
-    
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest    
 #注册中心
 eureka: 
   client:

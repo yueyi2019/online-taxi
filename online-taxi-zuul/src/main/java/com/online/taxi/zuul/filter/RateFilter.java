@@ -18,9 +18,9 @@ import com.netflix.zuul.exception.ZuulException;
 @Component
 public class RateFilter extends ZuulFilter {
 	/**
-	 * 每秒1个令牌，实际通过压测获得
+	 * 如果是1，表示每秒1个令牌，实际通过压测获得
 	 */
-	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(1);
+	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(2);
 	
 	@Override
 	public boolean shouldFilter() {
@@ -36,6 +36,7 @@ public class RateFilter extends ZuulFilter {
 				
 		//拿不到令牌马上返回。
 		if(!RATE_LIMITER.tryAcquire()) {
+			System.out.println("被限流了");
 			requestContext.setSendZuulResponse(false);
 			requestContext.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
 		}

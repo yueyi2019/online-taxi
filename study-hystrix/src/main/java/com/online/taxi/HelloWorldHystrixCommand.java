@@ -26,7 +26,7 @@ public class HelloWorldHystrixCommand extends HystrixCommand {
      */
     @Override 
     protected String run() {   
-//    	int i = 1/0;
+    	int i = 1/0;
         return "正常调用 Hello " + name; 
     } 
     
@@ -45,7 +45,7 @@ public class HelloWorldHystrixCommand extends HystrixCommand {
 		 * hystrix先创建一个新线程运行run()，
 		 * 	接着调用程序要在execute()调用处一直阻塞着，直到run()运行完成 
 		 */
-		String result = (String)new HelloWorldHystrixCommand("msb").execute();
+//		String result = (String)new HelloWorldHystrixCommand("msb").execute();
 		
 		
 		/**
@@ -55,17 +55,17 @@ public class HelloWorldHystrixCommand extends HystrixCommand {
 		 * 	调用程序通过Future.get()拿到run()的返回结果，
 		 * 	而Future.get()是阻塞执行的
 		 */
-//		Future<String> futureResult = new HelloWorldHystrixCommand("msb").queue();
-//		String result = "";
-//		try {
-//			result = futureResult.get();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		Future<String> futureResult = new HelloWorldHystrixCommand("msb").queue();
+		String result = "";
+		try {
+			result = futureResult.get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		System.out.println("程序结果："+result);

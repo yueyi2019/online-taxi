@@ -1,0 +1,94 @@
+spring: 
+  application: 
+        #应用名称
+    name: service-sms
+    #数据库连接配置
+  datasource: 
+         #配置当前使用的数据源的操作类型
+    type: com.alibaba.druid.pool.DruidDataSource                          
+         #配置MySQL的驱动程序类
+    driver-class-name: com.mysql.cj.jdbc.Driver                             
+         #数据库连接地址
+    url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+         #数据库连接用户名
+    username: root                                                        
+         #数据库连接密码
+    password: root                                                        
+         #进行数据库连接池的配置
+    dbcp2:          
+             #初始化提供的连接数                                                      
+      initial-size: 5    
+             #数据库连接池的最小维持连接数                                                 
+      min-idle: 5          
+             #最大的连接数                                               
+      max-total: 5 
+             #等待连接获取的最大超时时间                                                       
+      max-wait-millis: 200                                                
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+  #zipkin
+  zipkin:
+    base-url: http://localhost:9411/
+    #采样比例1，百分之八采样
+  sleuth:
+    sampler:
+      rate: 1  
+    
+    
+#mybatis配置
+mybatis:
+  #mybatis配置文件所在路径
+  config-location: classpath:mybatis/mybatis.cfg.xml 
+    #定义所有操作类的别名所在包
+  type-aliases-package: com.online.taxi.common
+    #所有的mapper映射文件  
+  mapper-locations:             
+  - classpath:mybatis/mapper/*.xml  
+
+
+#注册中心
+eureka: 
+#  server:
+#    enable-self-preservation: false       #关闭保护机制
+#    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
+  client:
+    healthcheck:      enabled: true
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
+  instance: 
+    virtual-host-name: service-sms
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    lease-renewal-interval-in-seconds: 1      
+    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 1   
+    
+    metadata-map:
+      user.name: root
+      user.password: root
+    
+#Admin监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+---
+spring:  profiles: 8002
+server: 
+    #服务端口
+  port: 8002
+
+---
+spring:
+  profiles: 8003
+server: 
+    #服务端口
+  port: 8003
+
+  

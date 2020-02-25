@@ -1,0 +1,44 @@
+#服务端口
+server:
+  port: 8012
+#应用名称，配置文件名，此时:config-client-dev.yml
+spring: 
+  application: 
+    name: config-client
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#先注释掉 配置中心
+  cloud: 
+    config:
+      discovery:
+        # 表示，使用discovery中的config server，而不是 自己指定uri，默认false。
+        enabled: true
+        service-id: config-server
+      profile: dev
+      label: master
+#注册中心-此时注册中去用于找到config-server
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
+  instance: 
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    lease-renewal-interval-in-seconds: 1      
+    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 1   
+    hostname: localhost
+    instance-id: config-client:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #yml加双引号，properties不用加
+        include: "*"
+        
+env: NaN
