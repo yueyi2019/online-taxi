@@ -57,10 +57,11 @@
 		</dependency>
 		
 		<!-- 引入sleuth依赖 -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency> -->
+		</dependency>
+		
 		<!-- zipkin -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

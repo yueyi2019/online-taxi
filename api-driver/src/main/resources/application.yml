@@ -71,7 +71,8 @@ management:
           
 logging:
   level:
-    org.springframework: info    
+    root: debug
+    org.springframework: debug
 
 ---
 spring:

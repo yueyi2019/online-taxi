@@ -78,6 +78,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+logging:
+  level:
+    root: info
+    org.springframework.web.servlet: debug      
 ---
 spring:  profiles: 8002
 server: 
