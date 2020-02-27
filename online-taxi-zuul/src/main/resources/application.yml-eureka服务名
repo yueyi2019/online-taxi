@@ -1,13 +1,15 @@
-# 基础
+# eureka服务名
 # 演示功能：
-# 1、默认。
-# 2、网关负载均衡。
-# 3、路由端点
+# 1、eureka服务名配置
 
-#api-driver: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
+zuul:
+  routes:
+    #此处名字随便取
+    custom-zuul-name: 
+      path: /zuul-custom-name/**
+      service-id: api-driver
+      
 server:
   port: 9100
 

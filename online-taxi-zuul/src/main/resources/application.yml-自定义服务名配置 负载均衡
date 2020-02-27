@@ -1,12 +1,21 @@
-# 基础
+# 自定义服务名配置 负载均衡
 # 演示功能：
-# 1、默认。
-# 2、网关负载均衡。
-# 3、路由端点
+# 1、自定义服务名 负载均衡
 
-#api-driver: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+zuul:
+  routes:
+    #此处名字随便取
+    custom-zuul-name: 
+      path: /zuul-custom-name/**
+      service-id: no-eureka-api-driver
+      
+no-eureka-api-driver:
+  ribbon: 
+    listOfServers: localhost:9003,localhost:9002
+ribbon: 
+  eureka:
+    enabled: false  
 
 server:
   port: 9100

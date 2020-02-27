@@ -1,13 +1,18 @@
-# 基础
+# 忽略
 # 演示功能：
-# 1、默认。
-# 2、网关负载均衡。
-# 3、路由端点
+# 1、忽略服务名访问
+# 2、忽略正则
 
-#api-driver: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
+zuul:
+  routes:
+    api-passenger: /zuul-api-passenger/**
+    api-driver: /zuul-api-driver/**
+  ignored-services:
+  - api-driver
+  ignored-patterns: 
+  - /*-driver/**
+        
 server:
   port: 9100
 

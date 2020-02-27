@@ -33,13 +33,17 @@ public class AuthFilter extends ZuulFilter {
 		if(checkUri.equalsIgnoreCase(uri)) {
 			return true;
 		}
+		// 测试路径
+		if(uri.contains("api-driver")) {
+			return true;
+		}
 		
 		return false;
 	}
 
 	@Override
 	public Object run() throws ZuulException {
-		System.out.println("拦截");
+		System.out.println("auth 拦截");
 		//获取上下文
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
@@ -48,7 +52,7 @@ public class AuthFilter extends ZuulFilter {
 		//如果token是1234，过
 		String defaultToken = "1234";
 		if(StringUtils.isNotBlank(token) && defaultToken.equals(token)) {
-			System.out.println("校验通过");
+			System.out.println("auth filter:校验通过");
 		} else {
 			requestContext.setSendZuulResponse(false);
 			requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());

@@ -31,4 +31,12 @@ public class TestController {
 		return "api-driver-token:"+token;
 	}
 	
+	@RequestMapping("/auth")
+	public String auth(HttpServletRequest req) {
+		String token = req.getHeader("token");
+		System.out.println("auth token:"+token);
+		
+		return "api-driver-auth:"+token;
+	}
+	
 }

@@ -1,12 +1,10 @@
-# 基础
+# 服务名配置
 # 演示功能：
-# 1、默认。
-# 2、网关负载均衡。
-# 3、路由端点
+# 1、服务名配置
+zuul:
+  routes:
+    api-driver: /zuul-api-driver/**
 
-#api-driver: 
-#  ribbon: 
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 server:
   port: 9100
