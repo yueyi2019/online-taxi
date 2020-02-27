@@ -52,13 +52,20 @@ public class HelloWorldHystrixCommand2 extends HystrixCommand {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-    	
+    	/**
+    	 * 这个例子，休眠半秒，一共执行15秒。
+    	 * 10秒以内超过9次请求，才开始计算 是否要熔断。
+    	 * 然后 判断 失败率，是否超过5%。
+    	 * 熔断后，
+    	 * 5秒，是 熔断开关打开，直接返回的。
+    	 * 再后来，放一部分请求过去。
+    	 */
 		for(int i=0;i<30;i++){
             Thread.sleep(500);
             HystrixCommand<String> command = new HelloWorldHystrixCommand2("testCircuitBreaker");
             String result = command.execute();
             //本例子中从第10次，熔断器开始打开
-            System.out.println("call times:"+(i+1)+"   result:"+result +" isCircuitBreakerOpen: "+command.isCircuitBreakerOpen());
+            System.out.println("调用次数:"+(i+1)+"   结果:"+result +" 开关是否打开: "+command.isCircuitBreakerOpen());
             //本例子中5s以后，熔断器尝试关闭，放开新的请求进来
         }
 		

@@ -13,7 +13,7 @@ eureka:
   client:
     #设置服务注册中心的URL
     service-url:                      
-      defaultZone: http://root:root@eureka-7901:7901/eureka/
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
   instance: 
     hostname: localhost
     lease-renewal-interval-in-seconds: 1
