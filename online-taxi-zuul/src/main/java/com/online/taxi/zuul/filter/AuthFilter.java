@@ -34,9 +34,9 @@ public class AuthFilter extends ZuulFilter {
 			return true;
 		}
 		// 测试路径
-		if(uri.contains("api-driver")) {
-			return true;
-		}
+//		if(uri.contains("api-driver")) {
+//			return true;
+//		}
 		
 		return false;
 	}

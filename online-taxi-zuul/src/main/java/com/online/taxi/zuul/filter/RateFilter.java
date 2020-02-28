@@ -19,7 +19,12 @@ import com.netflix.zuul.exception.ZuulException;
 public class RateFilter extends ZuulFilter {
 	/**
 	 * 如果是1，表示每秒1个令牌，实际通过压测获得
-	 */
+	 * 
+	 * 1、创建一个稳定输出令牌的RateLimiter，保证了平均每秒不超过permitsPerSecond个请求
+	 * 2、当请求到来的速度超过了permitsPerSecond，保证每秒只处理permitsPerSecond个请求
+	 * 3、当这个RateLimiter使用不足(即请求到来速度小于permitsPerSecond)，
+	 * 		会囤积最多permitsPerSecond个请求
+	*/
 	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(2);
 	
 	@Override
@@ -34,9 +39,12 @@ public class RateFilter extends ZuulFilter {
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
 				
-		//拿不到令牌马上返回。
+		/**
+		 * 拿不到令牌马上返回。尝试获取桶里的令牌，如果有，则返回true，
+		 *并且，总的令牌数减1。没有则返回false。
+		 */
 		if(!RATE_LIMITER.tryAcquire()) {
-			System.out.println("被限流了");
+			System.out.println("rate filter 拿不到令牌，被限流了");
 			requestContext.setSendZuulResponse(false);
 			requestContext.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
 		}
@@ -45,7 +53,6 @@ public class RateFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		// TODO Auto-generated method stub
 		return FilterConstants.PRE_TYPE;
 	}
 	
@@ -54,7 +61,6 @@ public class RateFilter extends ZuulFilter {
 	 */
 	@Override
 	public int filterOrder() {
-		// TODO Auto-generated method stub
 		return -10;
 	}
 
