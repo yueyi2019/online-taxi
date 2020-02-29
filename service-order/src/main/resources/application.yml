@@ -12,7 +12,32 @@ spring:
     port: 6379
     timeout: 2000
     password:
-
+    #数据库连接配置
+  datasource: 
+         #配置当前使用的数据源的操作类型
+    type: com.alibaba.druid.pool.DruidDataSource                          
+         #配置MySQL的驱动程序类
+    driver-class-name: com.mysql.cj.jdbc.Driver                             
+         #数据库连接地址
+    url: jdbc:mysql://localhost:3306/online-taxi?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+         #数据库连接用户名
+    username: root                                                        
+         #数据库连接密码
+    password: root                                                        
+         #进行数据库连接池的配置
+    dbcp2:          
+             #初始化提供的连接数                                                      
+      initial-size: 5    
+             #数据库连接池的最小维持连接数                                                 
+      min-idle: 5          
+             #最大的连接数                                               
+      max-total: 5 
+             #等待连接获取的最大超时时间                                                       
+      max-wait-millis: 200                                                
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
 #自定义哨兵
 sentinel:
   address:
@@ -23,10 +48,12 @@ sentinel:
 
 #注册中心
 eureka: 
+  
   client:
+    enabled: false
         #设置服务注册中心的URL
     service-url:                      
-      defaultZone: http://root:root@eureka-7901:7901/eureka/
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
   instance: 
          #服务刷新时间配置，每隔这个时间会主动心跳一次
     lease-renewal-interval-in-seconds: 1      
@@ -34,4 +61,13 @@ eureka:
     lease-expiration-duration-in-seconds: 1   
     hostname: localhost
     instance-id: service-order
-    
+
+#mybatis配置
+mybatis:
+  #mybatis配置文件所在路径
+  config-location: classpath:mybatis/mybatis.cfg.xml 
+    #定义所有操作类的别名所在包
+  type-aliases-package: com.online.taxi.common
+    #所有的mapper映射文件  
+  mapper-locations:             
+  - classpath:mybatis/mapper/*.xml      

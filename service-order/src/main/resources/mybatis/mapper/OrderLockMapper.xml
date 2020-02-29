@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.taxi.order.dao.OrderLockMapper" >
+  <resultMap id="BaseResultMap" type="com.online.taxi.common.entity.OrderLock" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <id column="driver_id" property="driverId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_order_lock
+    where order_id = #{orderId}
+  </delete>
+  <insert id="insertSelective" parameterType="com.online.taxi.common.entity.OrderLock" >
+    insert into tbl_order_lock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="driverId != null" >
+        #{driverId},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

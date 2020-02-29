@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author yueyi2019
  */
 @Service
-public class GrabServiceImpl implements GrabService {
+public class GrabRedLockServiceImpl implements GrabService {
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;

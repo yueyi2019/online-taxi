@@ -2,6 +2,7 @@ package com.online.taxi.order.controller;
 
 import com.online.taxi.order.service.GrabService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class GrabOrderController {
 
     @Autowired
+    @Qualifier("grabMysqlLockService")
     private GrabService grabService;
 
-    @GetMapping("/do/{orderId}/{driverId}")
-    public String grab(@PathVariable("orderId") int orderId,@PathVariable("driverId") int driverId){
+    @GetMapping("/do/{orderId}")
+    public String grab(@PathVariable("orderId") int orderId, int driverId){
         grabService.grabOrder(orderId,driverId);
-        return "";
+        return "抢单成功";
     }
 }

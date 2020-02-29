@@ -73,11 +73,16 @@
 		</table> -->
 		
 		<!-- 版本升级表 -->
-		<table tableName="tbl_app_version_update" domainObjectName="AppVersionUpdate"
+		<!-- <table tableName="tbl_app_version_update" domainObjectName="AppVersionUpdate"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
-		</table>
+		</table> -->
+		<table tableName="tbl_order_lock" domainObjectName="OrderLock"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
 		
 		
 	</context>
