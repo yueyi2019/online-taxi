@@ -1,7 +1,7 @@
 package com.online.taxi.order.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.UUID;
 
@@ -18,13 +18,13 @@ public class StudyService {
 
     }
 
-    @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+//    @Autowired
+//    private RedisTemplate<String,String> redisTemplate;
 
 
     public void grab(String orderId , String driverId){
         String uuid = UUID.randomUUID().toString();
-        redisTemplate.opsForValue().setIfAbsent(orderId,uuid);
+//        redisTemplate.opsForValue().setIfAbsent(orderId,uuid);
 //        redisTemplate.expire("",10,TimeUnit.SECONDS);
 
 

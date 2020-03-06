@@ -32,13 +32,13 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 	public ResponseResult smsSend(SmsSendRequest smsSendRequest) {
 		
 		// 下面是故意跑出异常代码
-//		try {
-//			int i = 1/0;
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
+		try {
+			int i = 1/0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
 //			throw new HystrixIgnoreException("熔断忽略的异常，忽略属性设置");
-//		}
+		}
 		
 		String url = HttpUrlConstants.SERVICE_SMS_URL + "/send/alisms-template";
 		return restTemplate.postForEntity(url, smsSendRequest, ResponseResult.class).getBody();
@@ -55,5 +55,7 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 		
 		return ResponseResult.fail(-3, "restTemplate熔断");
 	}
+	
+	// 都是请求底层服务的。
 
 }

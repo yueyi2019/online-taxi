@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author yueyi2019
  */
-@Service
+@Service("grabRedLockService")
 public class GrabRedLockServiceImpl implements GrabService {
 
     @Autowired

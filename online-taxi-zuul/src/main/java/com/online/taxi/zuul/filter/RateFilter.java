@@ -17,6 +17,8 @@ import com.netflix.zuul.exception.ZuulException;
  */
 @Component
 public class RateFilter extends ZuulFilter {
+	
+	private static int count = 0;
 	/**
 	 * 如果是1，表示每秒1个令牌，实际通过压测获得
 	 * 
@@ -25,11 +27,11 @@ public class RateFilter extends ZuulFilter {
 	 * 3、当这个RateLimiter使用不足(即请求到来速度小于permitsPerSecond)，
 	 * 		会囤积最多permitsPerSecond个请求
 	*/
-	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(2);
+	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(1);
 	
 	@Override
 	public boolean shouldFilter() {
-		// TODO Auto-generated method stub
+		// 此处可以写判断地址
 		return true;
 	}
 
@@ -44,7 +46,7 @@ public class RateFilter extends ZuulFilter {
 		 *并且，总的令牌数减1。没有则返回false。
 		 */
 		if(!RATE_LIMITER.tryAcquire()) {
-			System.out.println("rate filter 拿不到令牌，被限流了");
+			System.out.println("rate filter 拿不到令牌，被限流了"+count++);
 			requestContext.setSendZuulResponse(false);
 			requestContext.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
 		}

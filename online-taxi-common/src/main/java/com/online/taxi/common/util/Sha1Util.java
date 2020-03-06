@@ -21,4 +21,8 @@ public class Sha1Util {
 
         }
     }
+    
+    public static void main(String[] args) {
+		System.out.println(encode("我"));
+	}
 }

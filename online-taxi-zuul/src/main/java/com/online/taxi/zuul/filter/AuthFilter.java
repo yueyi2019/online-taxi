@@ -18,7 +18,7 @@ import com.netflix.zuul.exception.ZuulException;
 public class AuthFilter extends ZuulFilter {
 
 	/**
-	 * 过滤器是否生效
+	 * 	该过滤器是否生效
 	 */
 	@Override
 	public boolean shouldFilter() {
@@ -40,11 +40,14 @@ public class AuthFilter extends ZuulFilter {
 		
 		return false;
 	}
-
+	
+	/**
+	 * 	拦截后的具体业务逻辑
+	 */
 	@Override
 	public Object run() throws ZuulException {
 		System.out.println("auth 拦截");
-		//获取上下文
+		//获取上下文（重要，贯穿 所有filter，包含所有参数）
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
 		
@@ -54,18 +57,26 @@ public class AuthFilter extends ZuulFilter {
 		if(StringUtils.isNotBlank(token) && defaultToken.equals(token)) {
 			System.out.println("auth filter:校验通过");
 		} else {
+			// 不往下的过滤器继续了
 			requestContext.setSendZuulResponse(false);
 			requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+			requestContext.setResponseBody("认证失败");
 		}
+		requestContext.setSendZuulResponse(true);
 		return null;
 	}
-
+	/**
+	 * 拦截类型，4中类型。
+	 */
 	@Override
 	public String filterType() {
 		// TODO Auto-generated method stub
 		return FilterConstants.PRE_TYPE;
 	}
 
+	/**
+	 * 	值越小，越在前
+	 */
 	@Override
 	public int filterOrder() {
 		// TODO Auto-generated method stub
