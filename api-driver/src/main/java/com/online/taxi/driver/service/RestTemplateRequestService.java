@@ -8,5 +8,7 @@ import com.online.taxi.common.dto.sms.SmsSendRequest;
 public interface RestTemplateRequestService {
 	
 	ResponseResult smsSend(SmsSendRequest smsSendRequest);
+	
+	ResponseResult grabOrder(int orderId, int driverId);
 
 }

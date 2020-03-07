@@ -1,5 +1,8 @@
 package com.online.taxi.driver.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -57,5 +60,14 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 	}
 	
 	// 都是请求底层服务的。
+	
+	public ResponseResult grabOrder(int orderId, int driverId) {
+		
+		String url = HttpUrlConstants.SERVICE_ORDER_URL + "/grab/do/"+orderId+"?driverId="+driverId;
+		
+		Map<String ,Integer> map = new HashMap<>();
+		map.put("driverId", driverId);
+		return restTemplate.getForEntity(url, ResponseResult.class).getBody();
+	}
 
 }

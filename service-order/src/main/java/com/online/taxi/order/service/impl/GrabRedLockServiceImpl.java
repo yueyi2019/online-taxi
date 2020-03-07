@@ -22,12 +22,12 @@ public class GrabRedLockServiceImpl implements GrabService {
 //    @Qualifier("redisson")
 //    private Redisson redisson;
 
-    @Autowired
-    private RedissonClient redissonRed1;
-    @Autowired
-    private RedissonClient redissonRed2;
-    @Autowired
-    private RedissonClient redissonRed3;
+//    @Autowired
+//    private RedissonClient redissonRed1;
+//    @Autowired
+//    private RedissonClient redissonRed2;
+//    @Autowired
+//    private RedissonClient redissonRed3;
 
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
@@ -38,7 +38,7 @@ public class GrabRedLockServiceImpl implements GrabService {
 //        rLock.lock();
 
         //redisson锁 单节点
-        RLock rLock = redissonRed1.getLock(lockKey);
+//        RLock rLock = redissonRed1.getLock(lockKey);
 
         //红锁
 //        RLock rLock1 = redissonRed1.getLock(lockKey);
@@ -46,22 +46,22 @@ public class GrabRedLockServiceImpl implements GrabService {
 //        RLock rLock3 = redissonRed2.getLock(lockKey);
 //        RedissonRedLock rLock = new RedissonRedLock(rLock1,rLock2,rLock3);
 
-        rLock.lock();
+//        rLock.lock();
 
 //        rLock.tryLock();
 
-        try {
-            //通过断点模拟业务执行时间。
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(Thread.currentThread().getName()+"执行抢单逻辑");
-        }finally {
-
-            rLock.unlock();
-        }
+//        try {
+//            //通过断点模拟业务执行时间。
+//            try {
+//                Thread.sleep(10000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println(Thread.currentThread().getName()+"执行抢单逻辑");
+//        }finally {
+//
+//            rLock.unlock();
+//        }
         return null;
     }
 }

@@ -11,6 +11,8 @@ import com.online.taxi.common.entity.OrderLock;
 import com.online.taxi.order.dao.OrderLockMapper;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Service
 @Data
@@ -19,8 +21,8 @@ public class MysqlLock implements Lock {
 	@Autowired
 	private OrderLockMapper mapper;
 	
-	private OrderLock orderLock;
-	
+	private ThreadLocal<OrderLock> orderLockThreadLocal ;
+
 	@Override
 	public void lock() {
 		// 1、尝试加锁
@@ -43,7 +45,8 @@ public class MysqlLock implements Lock {
 	@Override
 	public boolean tryLock() {
 		try {
-			mapper.insertSelective(orderLock);
+			mapper.insertSelective(orderLockThreadLocal.get());
+			System.out.println("加锁对象："+orderLockThreadLocal.get());
 			return true;
 		}catch (Exception e) {
 			return false;
@@ -54,7 +57,8 @@ public class MysqlLock implements Lock {
 	
 	@Override
 	public void unlock() {
-		mapper.deleteByPrimaryKey(orderLock.getOrderId());
+		mapper.deleteByPrimaryKey(orderLockThreadLocal.get().getOrderId());
+		System.out.println("解锁对象："+orderLockThreadLocal.get());
 	}
 
 	@Override

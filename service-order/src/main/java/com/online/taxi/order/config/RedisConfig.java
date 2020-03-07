@@ -30,12 +30,12 @@ public class RedisConfig {
     //以上为redisson锁
 
     //以下为红锁
-    @Bean
-    public RedissonClient redissonRed1(){
-        Config config = new Config();
-        config.useSingleServer().setAddress("127.0.0.1:6379").setDatabase(0);
-        return Redisson.create(config);
-    }
+//    @Bean
+//    public RedissonClient redissonRed1(){
+//        Config config = new Config();
+//        config.useSingleServer().setAddress("127.0.0.1:6379").setDatabase(0);
+//        return Redisson.create(config);
+//    }
 //    @Bean
 //    public RedissonClient redissonRed2(){
 //        Config config = new Config();

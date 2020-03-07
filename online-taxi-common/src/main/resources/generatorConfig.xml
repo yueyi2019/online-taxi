@@ -78,7 +78,13 @@
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
 		</table> -->
-		<table tableName="tbl_order_lock" domainObjectName="OrderLock"
+		<!-- <table tableName="tbl_order_lock" domainObjectName="OrderLock"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table> -->
+        
+        <table tableName="tbl_order" domainObjectName="Order"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

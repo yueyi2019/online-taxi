@@ -7,6 +7,7 @@ import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.common.entity.OrderLock;
 import com.online.taxi.order.lock.MysqlLock;
 import com.online.taxi.order.service.GrabService;
+import com.online.taxi.order.service.OrderService;
 
 /**
  * @author yueyi2019
@@ -17,6 +18,11 @@ public class GrabMysqlLockServiceImpl implements GrabService {
 	@Autowired
 	private MysqlLock lock;
 	
+	@Autowired
+	OrderService orderService;
+	
+	ThreadLocal<OrderLock> orderLock = new ThreadLocal<>();
+	
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
         //生成key
@@ -24,24 +30,26 @@ public class GrabMysqlLockServiceImpl implements GrabService {
         ol.setOrderId(orderId);
         ol.setDriverId(driverId);
         
-        lock.setOrderLock(ol);
+        orderLock.set(ol);
+        lock.setOrderLockThreadLocal(orderLock);
         lock.lock();
-        System.out.println("司机"+driverId+"加锁成功");
-
+//        System.out.println("司机"+driverId+"加锁成功");
 
         try {
-            //通过断点模拟业务执行时间。
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+			System.out.println("司机:"+driverId+" 执行抢单逻辑");
+			
+            boolean b = orderService.grab(orderId, driverId);
+            if(b) {
+            	System.out.println("司机:"+driverId+" 抢单成功");
+            }else {
+            	System.out.println("司机:"+driverId+" 抢单失败");
             }
-            System.out.println("司机:"+driverId+" 执行抢单逻辑");
-        } finally {
-        	System.out.println("司机"+driverId+"解锁成功");
-            lock.unlock();
             
+        } finally {
+        	
+            lock.unlock();
         }
+        
         return null;
     }
 }
