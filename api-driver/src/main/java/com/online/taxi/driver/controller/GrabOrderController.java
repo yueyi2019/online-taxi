@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.taxi.common.dto.BaseResponse;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.driver.service.RestTemplateRequestService;
 
@@ -23,6 +24,6 @@ public class GrabOrderController {
     @GetMapping("/do/{orderId}")
     public ResponseResult grab(@PathVariable("orderId") int orderId, int driverId){
     	restTemplateRequestService.grabOrder(orderId,driverId);
-        return ResponseResult.success(new Object());
+        return ResponseResult.success("");
     }
 }

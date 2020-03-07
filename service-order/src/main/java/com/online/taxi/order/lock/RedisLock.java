@@ -19,7 +19,11 @@ import com.online.taxi.common.entity.OrderLock;
 import com.online.taxi.order.dao.OrderLockMapper;
 
 import lombok.Data;
-
+/**
+ * 例子中暂时不用
+ * @author yueyi2019
+ *
+ */
 @Service
 @Data
 public class RedisLock implements Lock {

@@ -9,6 +9,6 @@ public interface RestTemplateRequestService {
 	
 	ResponseResult smsSend(SmsSendRequest smsSendRequest);
 	
-	ResponseResult grabOrder(int orderId, int driverId);
+	String grabOrder(int orderId, int driverId);
 
 }

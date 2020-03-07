@@ -61,13 +61,11 @@ public class RestTemplateRequestServiceImpl implements RestTemplateRequestServic
 	
 	// 都是请求底层服务的。
 	
-	public ResponseResult grabOrder(int orderId, int driverId) {
+	public String grabOrder(int orderId, int driverId) {
 		
 		String url = HttpUrlConstants.SERVICE_ORDER_URL + "/grab/do/"+orderId+"?driverId="+driverId;
 		
-		Map<String ,Integer> map = new HashMap<>();
-		map.put("driverId", driverId);
-		return restTemplate.getForEntity(url, ResponseResult.class).getBody();
+		return restTemplate.getForEntity(url, String.class).getBody();
 	}
 
 }
