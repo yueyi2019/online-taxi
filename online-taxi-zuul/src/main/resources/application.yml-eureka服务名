@@ -9,7 +9,7 @@ zuul:
     custom-zuul-name: 
       path: /zuul-custom-name/**
       service-id: api-driver
-      
+
 server:
   port: 9100
 

@@ -10,8 +10,8 @@ zuul:
     api-driver: /zuul-api-driver/**
   ignored-services:
   - api-driver
-  ignored-patterns: 
-  - /*-driver/**
+#  ignored-patterns: 
+#  - /*-driver/**
         
 server:
   port: 9100

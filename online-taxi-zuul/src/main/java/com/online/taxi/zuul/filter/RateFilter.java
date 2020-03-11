@@ -27,7 +27,7 @@ public class RateFilter extends ZuulFilter {
 	 * 3、当这个RateLimiter使用不足(即请求到来速度小于permitsPerSecond)，
 	 * 		会囤积最多permitsPerSecond个请求
 	*/
-	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(1);
+	private static final RateLimiter RATE_LIMITER  = RateLimiter.create(5);
 	
 	@Override
 	public boolean shouldFilter() {

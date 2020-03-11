@@ -7,7 +7,8 @@ zuul:
   routes:
     api-passenger: /zuul-api-passenger/**
     api-driver: /zuul-api-driver/**
-  sensitive-headers: token
+  #sensitive-headers: token
+  
         
 server:
   port: 9100

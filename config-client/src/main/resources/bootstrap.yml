@@ -13,6 +13,8 @@ spring:
 #先注释掉 配置中心
   cloud: 
     config:
+    # 和下面的discovery互斥
+#      uri:#      - http://localhost:6001
       discovery:
         enabled: true
         service-id: config-server

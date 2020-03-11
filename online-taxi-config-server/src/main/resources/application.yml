@@ -38,3 +38,7 @@ management:
       exposure:
         #yml加双引号，properties不用加
         include: "*"
+logging:
+  level:
+    org.springframework.cloud: debug
+    org.springframework.boot: debug        

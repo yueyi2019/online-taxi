@@ -23,8 +23,9 @@ public class MsbFallback implements FallbackProvider{
 	@Override
 	public String getRoute() {
 		// TODO Auto-generated method stub
-		return "*";
-//		return "api-passenger";
+//		return "*";
+		// 下面是单独的微服务
+		return "api-passenger";
 //		return "api-driver";
 	}
 

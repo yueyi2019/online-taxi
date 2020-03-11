@@ -9,7 +9,7 @@ zuul:
     custom-zuul-name: 
       path: /zuul-custom-name/**
       service-id: no-eureka-api-driver
-      
+#不是eureka的service-id，我们自定义的，随便写的      
 no-eureka-api-driver:
   ribbon: 
     listOfServers: localhost:9003,localhost:9002
