@@ -1,5 +1,5 @@
 #服务端口
-server:  port: 80
+
 #应用名称，配置文件名，此时:service-verification-code-qa.yml
 spring: 
   application: 
@@ -9,24 +9,24 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cloud:    stream:
+      default-binder: rabbit  
+      bindings:         input: 
+                     #交换机名称
+          destination: stream-des-exchange
+        output: 
+                     #交换机名称
+          destination: stream-des-exchange           
+      
 
-#先注释掉 配置中心
-  cloud: 
-    config:
-    # 和下面的discovery互斥
-#      uri:#      - http://localhost:6001
-      discovery:
-        enabled: true
-        service-id: config-server
-      profile: dev
-      label: master
 #注册中心-此时注册中去用于找到config-server
 eureka: 
+  
   client:
+    enabled: false
     #设置服务注册中心的URL
     service-url:                      
-      defaultZone: http://root:root@eureka-7900:7900/eureka/
-  instance: 
+      defaultZone: http://root:root@eureka-7900:7900/eureka/  instance: 
     #服务刷新时间配置，每隔这个时间会主动心跳一次
     lease-renewal-interval-in-seconds: 1      
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
@@ -42,3 +42,10 @@ management:
         include: "*"
         
 env: NaN  
+---
+spring:  profiles: 80server:  port: 80   
+---
+spring:
+  profiles: 81
+server:
+  port: 81  

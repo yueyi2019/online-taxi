@@ -5,6 +5,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.online.taxi.common.entity.OrderLock;
@@ -59,6 +60,7 @@ public class MysqlLock implements Lock {
 	public void unlock() {
 		mapper.deleteByPrimaryKey(orderLockThreadLocal.get().getOrderId());
 		System.out.println("解锁对象："+orderLockThreadLocal.get());
+		orderLockThreadLocal.remove();
 	}
 
 	@Override

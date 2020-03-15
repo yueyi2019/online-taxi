@@ -10,6 +10,7 @@ spring:
   cloud:
     config:
       server:
+        
         git:
         #https://github.com/yueyi2019/online-taxi-config-profile.git
           uri: https://github.com/yueyi2019/online-taxi-config-profile

@@ -10,12 +10,11 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author yueyi2019
  */
-@EnableEurekaClient
 @SpringBootApplication
-public class VerificationCodeApplication {
+public class ConfigClientDiyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VerificationCodeApplication.class, args);
+		SpringApplication.run(ConfigClientDiyApplication.class, args);
 	}
 	
 	@Bean
