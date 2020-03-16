@@ -36,7 +36,7 @@ public class PreFilter extends ZuulFilter {
 //		
 //		return false;
 		
-		return true;
+		return (boolean)requestContext.get("f");
 	}
 
 	@Override

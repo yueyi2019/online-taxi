@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 进行MyBatis的相应的环境的属性定义 -->
+	<settings>
+		<!-- 在本项目之中开启二级缓存 -->
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+	
+</configuration>

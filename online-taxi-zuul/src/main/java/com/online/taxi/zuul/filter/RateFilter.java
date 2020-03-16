@@ -32,7 +32,7 @@ public class RateFilter extends ZuulFilter {
 	@Override
 	public boolean shouldFilter() {
 		// 此处可以写判断地址
-		return false;
+		return true;
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class RateFilter extends ZuulFilter {
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
 				
+		requestContext.set("f", false);
 		/**
 		 * 拿不到令牌马上返回。尝试获取桶里的令牌，如果有，则返回true，
 		 *并且，总的令牌数减1。没有则返回false。

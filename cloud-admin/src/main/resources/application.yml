@@ -7,6 +7,22 @@ spring:
     user:
       name: root
       password: root
+  # 邮件设置
+  mail:
+    host: smtp.qq.com
+    username: 1399979641
+    password: btpkjrjjrhsvgaff
+    properties:
+      mail: 
+        smpt: 
+          auth: true
+          starttls: 
+            enable: true
+            required: true
+#收件邮箱
+spring.boot.admin.notify.mail.to: 2634982208@qq.com   
+# 发件邮箱
+spring.boot.admin.notify.mail.from: 1399979641@qq.com   
       
 #注册中心
 eureka: 
