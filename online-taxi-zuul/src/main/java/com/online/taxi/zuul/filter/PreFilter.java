@@ -34,9 +34,9 @@ public class PreFilter extends ZuulFilter {
 //			return true;
 //		}
 //		
-//		return false;
+		return false;
 		
-		return (boolean)requestContext.get("f");
+//		return (boolean)requestContext.get("f");
 	}
 
 	@Override

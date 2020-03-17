@@ -32,7 +32,7 @@ public class RateFilter extends ZuulFilter {
 	@Override
 	public boolean shouldFilter() {
 		// 此处可以写判断地址
-		return true;
+		return false;
 	}
 
 	@Override
