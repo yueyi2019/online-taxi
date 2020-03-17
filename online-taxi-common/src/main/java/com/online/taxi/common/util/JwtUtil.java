@@ -57,7 +57,8 @@ public class JwtUtil {
         String token = createToken(subject,new Date());
         System.out.println(token);
         try {
-			Thread.sleep(10010);
+//			Thread.sleep(10010);
+        	Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

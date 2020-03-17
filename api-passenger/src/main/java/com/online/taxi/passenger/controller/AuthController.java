@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.online.taxi.common.dto.ResponseResult;
+import com.online.taxi.common.util.JwtUtil;
 import com.online.taxi.passenger.request.UserAuthRequest;
 import com.online.taxi.passenger.response.UserAuthResponse;
 /**
@@ -20,6 +21,7 @@ public class AuthController {
 	public ResponseResult login(@RequestBody UserAuthRequest userAuthRequest) {
 		
 		UserAuthResponse response = new UserAuthResponse();
+		
 		response.setToken("");
 		return ResponseResult.success(response);
 	}
